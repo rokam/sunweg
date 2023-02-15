@@ -1,2 +1,3 @@
 # sunweg
-Python lib for WEG solar platform
+Python lib for WEG solar energy platform
+
