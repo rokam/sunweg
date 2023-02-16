@@ -56,7 +56,7 @@ class APIHelper(metaclass=SingletonMeta):
             plant = Plant(id, 
                             result["usinas"]["nome"],  
                             float(str(result["AcumuladoPotencia"]).replace(" kW","").replace(",",".")), 
-                            float(str(result["KWHporkWp"]).replace(",",".")), 
+                            float(str(result["KWHporkWp"]).replace(",",".")) if result["KWHporkWp"]!="" else float(0), 
                             result["taxaPerformance"], 
                             result["economia"],
                             float(str(result["energiaGeradaHoje"]).replace(" kWh","").replace(",",".")),
