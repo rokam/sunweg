@@ -93,7 +93,7 @@ class APIHelper(metaclass=SingletonMeta):
                 for strstring in strmppt["strings"]:
                     string = String(strstring["nome"],
                                     float(strstring["valorTensao"]),
-                                    strstring["valorCorrente"],
+                                    float(strstring["valorCorrente"]),
                                     Status(int(strstring["status"])))
                     mppt.strings.append(string)
                 
