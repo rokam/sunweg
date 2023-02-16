@@ -103,8 +103,8 @@ class APIHelper(metaclass=SingletonMeta):
                 if str(phasename).endswith("status"):
                     continue
                 inverter.phases.append(Phase(phasename,
-                      result["tensaoca"][phasename],
-                      result["correnteCA"][phasename],
+                      float(result["tensaoca"][phasename].replace(",",".")),
+                      float(result["correnteCA"][phasename].replace(",",".")),
                       Status(result["tensaoca"][phasename+"status"]),
                       Status(result["correnteCA"][phasename+"status"])))
 
