@@ -21,12 +21,12 @@ class Inverter:
         return str(self.__class__) + ": " + str(self.__dict__)
 
 class Phase:
-    def __init__(self, name:str, voltage:float, current:float, status_voltage:Status, status_current:Status) -> None:
+    def __init__(self, name:str, voltage:float, amperage:float, status_voltage:Status, status_amperage:Status) -> None:
         self.name = name
         self.voltage = voltage
-        self.current = current
+        self.amperage = amperage
         self.status_voltage = status_voltage
-        self.status_current = status_current
+        self.status_amperage = status_amperage
     def __str__(self) -> str:
         return str(self.__class__) + ": " + str(self.__dict__)
 
@@ -39,10 +39,10 @@ class MPPT:
         return str(self.__class__) + ": " + str(self.__dict__)
 
 class String:
-    def __init__(self, name:str, voltage:float, current:float, status:Status) -> None:
+    def __init__(self, name:str, voltage:float, amperage:float, status:Status) -> None:
         self.name = name
         self.voltage = voltage
-        self.current = current
+        self.amperage = amperage
         self.status = status
     
     def __str__(self) -> str:
