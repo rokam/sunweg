@@ -77,6 +77,8 @@ class APIHelper(metaclass=SingletonMeta):
         try:
             result = self._get(SUNWEG_INVERTER_DETAIL_PATH+str(id))
             inverter = Inverter(id,
+                            result["inversor"]["descricao"],
+                            result["inversor"]["esn"],
                             float(result["energiaAcumulada"].replace(" kWh","").replace(",",".")),
                             float(result["energiaDoDia"].replace(" kWh","").replace(",",".")),
                             float(result["fatorpotencia"].replace(",",".")),
