@@ -14,6 +14,7 @@ setuptools.setup(
     author="rokam",
     author_email="lucas@mindello.com.br",
     description="A library to retrieve data from sunweg.net",
+    license="MIT",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/rokam/sunweg",
