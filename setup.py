@@ -9,8 +9,8 @@ requires = [
 ]
 
 setuptools.setup(
-    name='sunweg',
-    version='0.0.9',
+    name="sunweg",
+    version="0.0.9",
     author="rokam",
     author_email="lucas@mindello.com.br",
     description="A library to retrieve data from sunweg.net",
@@ -19,10 +19,10 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/rokam/sunweg",
     install_requires=requires,
-    packages=setuptools.find_packages(),
+    packages=setuptools.find_packages(where="sunweg/*", exclude=["sunweg/tests/*"]),
     classifiers=[
-         "Programming Language :: Python :: 3",
-         "License :: OSI Approved :: MIT License",
-         "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
     ],
 )
