@@ -1,10 +1,12 @@
 # SunWeg
 
+[![Python build](https://github.com/rokam/sunweg/actions/workflows/python-build.yml/badge.svg)](https://github.com/rokam/sunweg/actions/workflows/python-build.yml)
+
 Python lib for WEG solar energy platform, https://sunweg.net/
 
-# Usage
+## Usage
 
-```
+``` python
 from sunweg.api import APIHelper
 
 api = APIHelper('username','password')
@@ -21,6 +23,6 @@ for plant in plants:
                 print(string)
 ```
 
-# Contribute
+## Contribute
 
 Feel free to send issues and pull requests.
