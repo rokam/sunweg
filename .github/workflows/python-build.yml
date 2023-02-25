@@ -37,7 +37,7 @@ jobs:
         if: github.event_name != 'pull_request'
         run: |
           genbadge tests -o reports/tests.svg
-          genbadge coverage -o reports/coverage.svg
+          genbadge coverage -i coverage.xml -o reports/coverage.svg
           genbadge flake8 -i reports/flake8/flake8stats.txt -o reports/flak8.svg
       - name: Publish badges report to badges branch
         uses: JamesIves/github-pages-deploy-action@v4
