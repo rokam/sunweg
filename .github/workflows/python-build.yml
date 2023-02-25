@@ -1,6 +1,10 @@
 name: Python build
 
-on: [push]
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
   build:
@@ -26,6 +30,22 @@ jobs:
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+          # export report for badges
+          flake8 . --exit-zero --format=html --htmldir ./reports/flake8 --statistics --tee --output-file flake8stats.txt
       - name: Test with pytest
         run: |
-          pytest
+          pytest --cov=sunweg --junitxml=reports/junit/junit.xml --html=reports/junit/report.html
+      - name: Generate badges
+        if: github.event_name != 'pull_request'
+        run: |
+          mkdir -p badges
+          pip install genbadge[all]
+          genbadge tests -o badges/tests.svg
+          genbadge coverage -o badges/coverage.svg
+          genbadge flake8 -o badges/flake8.svg
+      - name: Publish badges report to badges branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        if: github.event_name != 'pull_request'
+        with:
+          branch: badges
+          folder: badges

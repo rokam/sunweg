@@ -45,7 +45,7 @@ class Api_Test(TestCase):
             return_value=self.responses["auth_success_response.json"],
         ):
             api = APIHelper("user@acme.com", "password")
-            assert api.authenticate() == True
+            assert api.authenticate()
 
     def test_authenticate_failed(self) -> None:
         with patch(
