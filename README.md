@@ -1,4 +1,5 @@
 # SunWeg
+
 Python lib for WEG solar energy platform, https://sunweg.net/
 
 # Usage
@@ -21,4 +22,5 @@ for plant in plants:
 ```
 
 # Contribute
+
 Feel free to send issues and pull requests.
