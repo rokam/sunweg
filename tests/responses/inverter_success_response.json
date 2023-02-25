@@ -1,0 +1,76 @@
+{
+  "success": true,
+  "temperatura": 0,
+  "temperaturaStatus": 0,
+  "fatorpotencia": "0,00",
+  "stringmppt": [
+    {
+      "nomemppt": "MPPT 01",
+      "strings": [
+        {
+          "nome": "ST 01",
+          "valorTensao": "548.2",
+          "valorCorrente": "0.3",
+          "situacao": 1,
+          "status": 0
+        },
+        {
+          "nome": "ST 02",
+          "valorTensao": "783.1",
+          "valorCorrente": "0.3",
+          "situacao": 1,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "nomemppt": "MPPT 02",
+      "strings": [
+        {
+          "nome": "ST 03",
+          "valorTensao": 0,
+          "valorCorrente": 0,
+          "situacao": 1,
+          "status": 2
+        },
+        {
+          "nome": "ST 04",
+          "valorTensao": 0,
+          "valorCorrente": 0,
+          "situacao": 1,
+          "status": 2
+        }
+      ]
+    }
+  ],
+  "inversor": {
+    "id": 21255,
+    "nome": "Inverter Name",
+    "descricao": "Inverter Description",
+    "esn": "1234ABC",
+    "situacao": 1,
+    "tensaoca": 242,
+    "temperatura": 80
+  },
+  "correnteCA": {
+    "faseA": "0,20",
+    "faseB": "0,50",
+    "faseC": "0,40",
+    "faseAstatus": 0,
+    "faseBstatus": 0,
+    "faseCstatus": 0
+  },
+  "tensaoca": {
+    "faseA": "11,10",
+    "faseB": "11,30",
+    "faseC": "10,20",
+    "faseAstatus": 1,
+    "faseBstatus": 1,
+    "faseCstatus": 1
+  },
+  "potenciaativa": "0,00 kW",
+  "energiaDoDia": "0,00 kWh",
+  "energiaAcumulada": "23,20 kWh",
+  "frequencia": 0,
+  "statusInversor": 0
+}
