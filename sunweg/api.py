@@ -34,12 +34,12 @@ class APIHelper(metaclass=SingletonMeta):
         self.session = session()
 
     def authenticate(self) -> bool:
-        userdata = json.dumps(
+        user_data = json.dumps(
             {"usuario": self._username, "senha": self._password},
             default=lambda o: o.__dict__,
         )
 
-        result = self._post(SUNWEG_LOGIN_PATH, userdata)
+        result = self._post(SUNWEG_LOGIN_PATH, user_data)
         self._token = result["token"]
         return result["success"]
 
@@ -52,8 +52,8 @@ class APIHelper(metaclass=SingletonMeta):
         try:
             result = self._get(SUNWEG_PLANT_LIST_PATH)
             ret_list = []
-            for usina in result["usinas"]:
-                if (plant := self.plant(usina["id"])) is not None:
+            for plant in result["usinas"]:
+                if (plant := self.plant(plant["id"])) is not None:
                     ret_list.append(plant)
             return ret_list
         except LoginError:
@@ -116,30 +116,30 @@ class APIHelper(metaclass=SingletonMeta):
                 result["temperatura"],
             )
 
-            for strmppt in result["stringmppt"]:
-                mppt = MPPT(strmppt["nomemppt"])
+            for str_mppt in result["stringmppt"]:
+                mppt = MPPT(str_mppt["nomemppt"])
 
-                for strstring in strmppt["strings"]:
+                for str_string in str_mppt["strings"]:
                     string = String(
-                        strstring["nome"],
-                        float(strstring["valorTensao"]),
-                        float(strstring["valorCorrente"]),
-                        Status(int(strstring["status"])),
+                        str_string["nome"],
+                        float(str_string["valorTensao"]),
+                        float(str_string["valorCorrente"]),
+                        Status(int(str_string["status"])),
                     )
                     mppt.strings.append(string)
 
                 inverter.mppts.append(mppt)
 
-            for phasename in result["correnteCA"].keys():
-                if str(phasename).endswith("status"):
+            for phase_name in result["correnteCA"].keys():
+                if str(phase_name).endswith("status"):
                     continue
                 inverter.phases.append(
                     Phase(
-                        phasename,
-                        float(result["tensaoca"][phasename].replace(",", ".")),
-                        float(result["correnteCA"][phasename].replace(",", ".")),
-                        Status(result["tensaoca"][phasename + "status"]),
-                        Status(result["correnteCA"][phasename + "status"]),
+                        phase_name,
+                        float(result["tensaoca"][phase_name].replace(",", ".")),
+                        float(result["correnteCA"][phase_name].replace(",", ".")),
+                        Status(result["tensaoca"][phase_name + "status"]),
+                        Status(result["correnteCA"][phase_name + "status"]),
                     )
                 )
 
