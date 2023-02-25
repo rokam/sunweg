@@ -32,7 +32,7 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --output-file ./reports/flake8/flake8stats.txt
       - name: Test with pytest
         run: |
-          pytest --cov=sunweg --cov-report html --cov-report xml
+          pytest --cov=sunweg --cov-report html --cov-report xml --junitxml=reports/junit/junit.xsml
       - name: Generate badges
         if: github.event_name != 'pull_request'
         run: |
