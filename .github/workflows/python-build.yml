@@ -45,3 +45,4 @@ jobs:
         with:
           branch: badges
           folder: reports
+          token: ${{ secrets.SUNWEG_GITHUB_PAT }}
