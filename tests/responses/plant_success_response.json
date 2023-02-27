@@ -5,7 +5,13 @@
     "nome": "Plant Name",
     "inversores": [
       {
-        "id": 21255
+        "id": 21255,
+        "nome": "Inverter Name",
+        "descricao": "Inverter Description",
+        "esn": "1234ABC",
+        "situacao": 1,
+        "tensaoca": 242,
+        "temperatura": 80
       }
     ]
   },

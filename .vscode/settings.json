@@ -19,25 +19,36 @@
     "Potencia",
     "SUNWEG",
     "Tensao",
+    "alarme",
+    "autenticacao",
     "carbono",
     "descricao",
     "economia",
     "energia",
     "energiaacumuladanumber",
     "fatorpotencia",
+    "franqueado",
     "frequencia",
+    "getpaineloperacao",
+    "idusina",
+    "integrador",
     "inversores",
     "mppt",
     "mppts",
     "nomemppt",
+    "planos",
     "potenciaativa",
+    "procurar",
     "reduz",
+    "rtype",
     "senha",
+    "situacao",
     "stringmppt",
     "temperatura",
     "tensaoca",
     "usinas",
-    "usuario"
+    "usuario",
+    "rokam"
   ],
   "python.linting.mypyArgs": [
     "--follow-imports=silent",
@@ -46,5 +57,10 @@
     "--no-pretty",
     "--install-types"
   ],
-  "python.testing.unittestEnabled": false
+  "python.testing.unittestEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Args": [
+    "--max-complexity=10",
+    "--max-line-length=127"
+  ],
 }

@@ -1,6 +1,6 @@
 {
   "success": true,
-  "temperatura": 0,
+  "temperatura": 80,
   "temperaturaStatus": 0,
   "fatorpotencia": "0,00",
   "stringmppt": [
@@ -12,14 +12,14 @@
           "valorTensao": "548.2",
           "valorCorrente": "0.3",
           "situacao": 1,
-          "status": 0
+          "status": 2
         },
         {
           "nome": "ST 02",
           "valorTensao": "783.1",
           "valorCorrente": "0.3",
           "situacao": 1,
-          "status": 0
+          "status": 2
         }
       ]
     },
@@ -28,15 +28,15 @@
       "strings": [
         {
           "nome": "ST 03",
-          "valorTensao": 0,
-          "valorCorrente": 0,
+          "valorTensao": "743.1",
+          "valorCorrente": "1.2",
           "situacao": 1,
           "status": 2
         },
         {
           "nome": "ST 04",
-          "valorTensao": 0,
-          "valorCorrente": 0,
+          "valorTensao": "542.2",
+          "valorCorrente": "2.1",
           "situacao": 1,
           "status": 2
         }
