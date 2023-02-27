@@ -1,9 +1,9 @@
 # SunWeg
 
 [![Python build](https://github.com/rokam/sunweg/actions/workflows/python-build.yml/badge.svg)](https://github.com/rokam/sunweg/actions/workflows/python-build.yml)
-![Python tests](https://raw.githubusercontent.com/rokam/sunweg/badges/tests.svg?12334)
-![Python coverage](https://raw.githubusercontent.com/rokam/sunweg/badges/coverage.svg?12334)
-![Python fake8](https://raw.githubusercontent.com/rokam/sunweg/badges/flake8.svg?12334)
+![Python tests](https://raw.githubusercontent.com/rokam/sunweg/badges/tests.svg)
+![Python coverage](https://raw.githubusercontent.com/rokam/sunweg/badges/coverage.svg)
+![Python fake8](https://raw.githubusercontent.com/rokam/sunweg/badges/flake8.svg)
 
 Python lib for WEG solar energy platform, https://sunweg.net/
 
@@ -25,6 +25,10 @@ for plant in plants:
             for string in mppt.strings:
                 print(string)
 ```
+
+## Documentation
+
+Check the [DOCs](https://github.com/rokam/sunweg/blob/main/docs/index.md) for API documentation.
 
 ## Contribute
 
