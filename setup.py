@@ -1,4 +1,5 @@
 #!/bin/python
+"""setup sunweg."""
 import setuptools
 
 with open("README.md", "r") as fh:
@@ -10,7 +11,7 @@ requires = [
 
 setuptools.setup(
     name="sunweg",
-    version="0.0.11",
+    version="1.0.0",
     author="rokam",
     author_email="lucas@mindello.com.br",
     description="A library to retrieve data from sunweg.net",

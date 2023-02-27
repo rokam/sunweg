@@ -1,3 +1,4 @@
+"""Test sunweg common."""
 from datetime import datetime
 from sunweg.device import Inverter, MPPT, Phase, String
 from sunweg.plant import Plant
