@@ -5,7 +5,7 @@
 ![Python coverage](https://raw.githubusercontent.com/rokam/sunweg/badges/coverage.svg)
 ![Python fake8](https://raw.githubusercontent.com/rokam/sunweg/badges/flake8.svg)
 
-Python lib for WEG solar energy platform, https://sunweg.net/
+Python lib for WEG solar energy platform, [SunWEG.net](https://sunweg.net/)
 
 ## Usage
 

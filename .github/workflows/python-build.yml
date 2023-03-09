@@ -34,16 +34,5 @@ jobs:
         run: |
           pytest --cov=sunweg --cov-report html --cov-report xml --junitxml=reports/junit/junit.xml
           mv htmlcov reports/coverage
-      - name: Generate badges
-        if: github.event_name != 'pull_request'
-        run: |
-          genbadge tests -o reports/tests.svg
-          genbadge coverage -i coverage.xml -o reports/coverage.svg
-          genbadge flake8 -i reports/flake8/flake8stats.txt -o reports/flake8.svg
-      - name: Publish badges report to badges branch
-        uses: JamesIves/github-pages-deploy-action@v4
-        if: github.event_name != 'pull_request'
-        with:
-          branch: badges
-          folder: reports
-          token: ${{ secrets.SUNWEG_GITHUB_PAT }}
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
