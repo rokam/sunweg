@@ -232,8 +232,8 @@ class Inverter:
         :type total_energy_metric: str
         :param today_energy: total generated energy today
         :type today_energy: float
-        :param today_energy: total generated energy today metric
-        :type today_energy: str
+        :param today_energy_metric: total generated energy today metric
+        :type today_energy_metric: str
         :param power_factor: inverter power factor
         :type power_factor: float
         :param frequency: inverter output frequency in Hz

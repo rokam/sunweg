@@ -213,7 +213,7 @@ class APIHelper(metaclass=SingletonMeta):
             )
             inverter.today_energy_metric = (result["energiaDoDia"].split(" ")[1],)
             inverter.power_factor = float(result["fatorpotencia"].replace(",", "."))
-            inverter.frequency = result["frequencia"]
+            inverter.frequency = float(result["frequencia"].replace(",", "."))
             inverter.power = float(
                 result["potenciaativa"].split(" ")[0].replace(",", ".")
             )
