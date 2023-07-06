@@ -228,7 +228,7 @@ class Api_Test(TestCase):
             assert inverter is not None
             assert inverter.id == 12345
             assert inverter.name == "Other inverter name"
-            assert inverter.frequency == 0
+            assert inverter.frequency == 59.85
             assert inverter.power == 0.0
             assert inverter.power_factor == 0.0
             assert inverter.sn == "1234ABCD"
