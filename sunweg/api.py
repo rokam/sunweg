@@ -122,10 +122,9 @@ class APIHelper(metaclass=SingletonMeta):
                 performance_rate=result["taxaPerformance"],
                 saving=result["economia"],
                 today_energy=float(
-                    str(result["energiaGeradaHoje"])
-                    .replace(" kWh", "")
-                    .replace(",", ".")
+                    str(result["energiaGeradaHoje"]).split(" ")[0].replace(",", ".")
                 ),
+                today_energy_metric=str(result["energiaGeradaHoje"]).split(" ")[1],
                 total_energy=float(result["energiaacumuladanumber"]),
                 total_carbon_saving=result["reduz_carbono_total_number"],
                 last_update=datetime.strptime(
@@ -170,16 +169,17 @@ class APIHelper(metaclass=SingletonMeta):
                 name=result["inversor"]["nome"],
                 sn=result["inversor"]["esn"],
                 total_energy=float(
-                    result["energiaAcumulada"].replace(" kWh", "").replace(",", ".")
+                    result["energiaAcumulada"].split(" ")[0].replace(",", ".")
                 ),
+                total_energy_metric=result["energiaAcumulada"].split(" ")[1],
                 today_energy=float(
-                    result["energiaDoDia"].replace(" kWh", "").replace(",", ".")
+                    result["energiaDoDia"].split(" ")[0].replace(",", ".")
                 ),
+                today_energy_metric=result["energiaDoDia"].split(" ")[1],
                 power_factor=float(result["fatorpotencia"].replace(",", ".")),
                 frequency=result["frequencia"],
-                power=float(
-                    result["potenciaativa"].replace(" kW", "").replace(",", ".")
-                ),
+                power=float(result["potenciaativa"].split(" ")[0].replace(",", ".")),
+                power_metric=result["potenciaativa"].split(" ")[1],
                 status=Status(int(result["statusInversor"])),
                 temperature=result["temperatura"],
             )
@@ -205,16 +205,19 @@ class APIHelper(metaclass=SingletonMeta):
         try:
             result = self._get(SUNWEG_INVERTER_DETAIL_PATH + str(inverter.id))
             inverter.total_energy = float(
-                result["energiaAcumulada"].replace(" kWh", "").replace(",", ".")
+                result["energiaAcumulada"].split(" ")[0].replace(",", ".")
             )
+            inverter.total_energy_metric = (result["energiaAcumulada"].split(" ")[1],)
             inverter.today_energy = float(
-                result["energiaDoDia"].replace(" kWh", "").replace(",", ".")
+                result["energiaDoDia"].split(" ")[0].replace(",", ".")
             )
+            inverter.today_energy_metric = (result["energiaDoDia"].split(" ")[1],)
             inverter.power_factor = float(result["fatorpotencia"].replace(",", "."))
             inverter.frequency = result["frequencia"]
             inverter.power = float(
-                result["potenciaativa"].replace(" kW", "").replace(",", ".")
+                result["potenciaativa"].split(" ")[0].replace(",", ".")
             )
+            inverter.power_metric = (result["potenciaativa"].split(" ")[1],)
 
             self._populate_MPPT(result=result, inverter=inverter)
         except LoginError:
