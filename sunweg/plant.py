@@ -16,6 +16,7 @@ class Plant:
         performance_rate: float,
         saving: float,
         today_energy: float,
+        today_energy_metric: str,
         total_energy: float,
         total_carbon_saving: float,
         last_update: datetime,
@@ -35,8 +36,10 @@ class Plant:
         :type performance_rate: float
         :param saving: total saving in R$
         :type saving: float
-        :param today_energy: today generated energy in kWh
+        :param today_energy: today generated energy
         :type today_energy: float
+        :param today_energy_metric: today generated energy metric
+        :type today_energy_metric: str
         :param total_energy: total generated energy in kWh
         :type total_energy: float
         :param total_carbon_saving: total of CO2 saved
@@ -51,6 +54,7 @@ class Plant:
         self._performance_rate = performance_rate
         self._saving = saving
         self._today_energy = today_energy
+        self._today_energy_metric = today_energy_metric
         self._total_energy = total_energy
         self._total_carbon_saving = total_carbon_saving
         self._last_update = last_update
@@ -119,12 +123,22 @@ class Plant:
     @property
     def today_energy(self) -> float:
         """
-        Get plant today generated energy in kWh.
+        Get plant today generated energy.
 
-        :return: plant today generated energy in kWh
+        :return: plant today generated energy
         :rtype: float
         """
         return self._today_energy
+
+    @property
+    def today_energy_metric(self) -> str:
+        """
+        Get plant today generated energy metric.
+
+        :return: plant today generated energy metric
+        :rtype: str
+        """
+        return self._today_energy_metric
 
     @property
     def total_energy(self) -> float:

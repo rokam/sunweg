@@ -121,6 +121,7 @@ class Api_Test(TestCase):
             assert plant.performance_rate == 1.48
             assert plant.saving == 12.786912
             assert plant.today_energy == 1.23
+            assert plant.today_energy_metric == "kWh"
             assert plant.total_carbon_saving == 0.012296
             assert plant.total_energy == 23.2
             assert plant.__str__().startswith("<class 'sunweg.plant.Plant'>")
@@ -130,12 +131,15 @@ class Api_Test(TestCase):
                 assert inverter.name == "Inverter Name"
                 assert inverter.frequency == 0
                 assert inverter.power == 0.0
+                assert inverter.power_metric == ""
                 assert inverter.power_factor == 0.0
                 assert inverter.sn == "1234ABC"
                 assert inverter.status == Status.ERROR
                 assert inverter.temperature == 80
                 assert inverter.today_energy == 0.0
+                assert inverter.today_energy_metric == ""
                 assert inverter.total_energy == 0.0
+                assert inverter.total_energy_metric == ""
                 assert not inverter.is_complete
 
     def test_plant_401(self) -> None:
@@ -163,12 +167,15 @@ class Api_Test(TestCase):
             assert inverter.name == "Inverter Name"
             assert inverter.frequency == 0
             assert inverter.power == 0.0
+            assert inverter.power_metric == "kW"
             assert inverter.power_factor == 0.0
             assert inverter.sn == "1234ABC"
             assert inverter.status == Status.OK
             assert inverter.temperature == 80
             assert inverter.today_energy == 0.0
+            assert inverter.today_energy_metric == "kWh"
             assert inverter.total_energy == 23.2
+            assert inverter.today_energy_metric == "kWh"
             strings: list[String] = []
             for mppt in inverter.mppts:
                 assert mppt.__str__().startswith("<class 'sunweg.device.MPPT'>")

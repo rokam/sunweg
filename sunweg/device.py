@@ -205,10 +205,13 @@ class Inverter:
         status: Status,
         temperature: int,
         total_energy: float = 0,
+        total_energy_metric: str = "",
         today_energy: float = 0,
+        today_energy_metric: str = "",
         power_factor: float = 0,
         frequency: float = 0,
         power: float = 0,
+        power_metric: str = "",
     ) -> None:
         """
         Initialize Inverter.
@@ -223,25 +226,34 @@ class Inverter:
         :type status: Status
         :param temperature: inverter temperature
         :type temperature: int
-        :param total_energy: total generated energy in kWh
+        :param total_energy: total generated energy
         :type total_energy: float
-        :param today_energy: total generated energy today in kWh
+        :param total_energy_metric: total generated energy metric
+        :type total_energy_metric: str
+        :param today_energy: total generated energy today
         :type today_energy: float
+        :param today_energy: total generated energy today metric
+        :type today_energy: str
         :param power_factor: inverter power factor
         :type power_factor: float
         :param frequency: inverter output frequency in Hz
         :type frequency: float
-        :param power: inverter output power in W
+        :param power: inverter output power
         :type power: float
+        :param power: inverter output power metric
+        :type power: str
         """
         self._id = id
         self._name = name
         self._sn = sn
         self._total_energy = total_energy
+        self._total_energy_metric = total_energy_metric
         self._today_energy = today_energy
+        self._today_energy_metric = today_energy_metric
         self._power_factor = power_factor
         self._frequency = frequency
         self._power = power
+        self._power_metric = power_metric
         self._status = status
         self._temperature = temperature
         self._phases: list[Phase] = []
@@ -300,9 +312,9 @@ class Inverter:
     @property
     def today_energy(self) -> float:
         """
-        Get inverter today generated energy in kWh.
+        Get inverter today generated energy.
 
-        :return: inverter today generated energy in kWh
+        :return: inverter today generated energy
         :rtype: float
         """
         return self._today_energy
@@ -310,19 +322,39 @@ class Inverter:
     @today_energy.setter
     def today_energy(self, value: float) -> None:
         """
-        Set inverter today generated energy in kWh.
+        Set inverter today generated energy.
 
-        :param value: inverter today generated energy in kWh
+        :param value: inverter today generated energy
         :type value: float
         """
         self._today_energy = value
 
     @property
+    def today_energy_metric(self) -> str:
+        """
+        Get inverter today generated energy metric.
+
+        :return: inverter today generated energy metric
+        :rtype: str
+        """
+        return self._today_energy_metric
+
+    @today_energy_metric.setter
+    def today_energy_metric(self, value: str) -> None:
+        """
+        Set inverter today generated energy metric.
+
+        :param value: inverter today generated energy metric
+        :type value: str
+        """
+        self._today_energy_metric = value
+
+    @property
     def total_energy(self) -> float:
         """
-        Get inverter total generated energy in kWh.
+        Get inverter total generated energy.
 
-        :return: inverter total generated energy in kWh
+        :return: inverter total generated energy
         :rtype: float
         """
         return self._total_energy
@@ -330,12 +362,32 @@ class Inverter:
     @total_energy.setter
     def total_energy(self, value: float) -> None:
         """
-        Set inverter total generated energy in kWh.
+        Set inverter total generated energy.
 
-        :param value: inverter total generated energy in kWh
+        :param value: inverter total generated energy
         :type value: float
         """
         self._total_energy = value
+
+    @property
+    def total_energy_metric(self) -> str:
+        """
+        Get inverter total generated energy metric.
+
+        :return: inverter total generated energy metric
+        :rtype: str
+        """
+        return self._total_energy_metric
+
+    @total_energy_metric.setter
+    def total_energy_metric(self, value: str) -> None:
+        """
+        Set inverter total generated energy metric.
+
+        :param value: inverter total generated energy metric
+        :type value: str
+        """
+        self._total_energy_metric = value
 
     @property
     def power_factor(self) -> float:
@@ -380,9 +432,9 @@ class Inverter:
     @property
     def power(self) -> float:
         """
-        Get inverter output power in W.
+        Get inverter output power.
 
-        :return: inverter output power in W
+        :return: inverter output power
         :rtype: float
         """
         return self._power
@@ -390,12 +442,32 @@ class Inverter:
     @power.setter
     def power(self, value: float) -> None:
         """
-        Set inverter output power in W.
+        Set inverter output power.
 
-        :param value: inverter output power in W
+        :param value: inverter output power
         :type value: float
         """
         self._power = value
+
+    @property
+    def power_metric(self) -> str:
+        """
+        Get inverter output power metric.
+
+        :return: inverter output power metric
+        :rtype: str
+        """
+        return self._power_metric
+
+    @power_metric.setter
+    def power_metric(self, value: str) -> None:
+        """
+        Set inverter output power metric.
+
+        :param value: inverter output power metric
+        :type value: float
+        """
+        self._power_metric = value
 
     @property
     def is_complete(self) -> bool:
