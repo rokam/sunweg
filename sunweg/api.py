@@ -207,17 +207,17 @@ class APIHelper(metaclass=SingletonMeta):
             inverter.total_energy = float(
                 result["energiaAcumulada"].split(" ")[0].replace(",", ".")
             )
-            inverter.total_energy_metric = (result["energiaAcumulada"].split(" ")[1],)
+            inverter.total_energy_metric = result["energiaAcumulada"].split(" ")[1]
             inverter.today_energy = float(
                 result["energiaDoDia"].split(" ")[0].replace(",", ".")
             )
-            inverter.today_energy_metric = (result["energiaDoDia"].split(" ")[1],)
+            inverter.today_energy_metric = result["energiaDoDia"].split(" ")[1]
             inverter.power_factor = float(result["fatorpotencia"].replace(",", "."))
             inverter.frequency = float(result["frequencia"].replace(",", "."))
             inverter.power = float(
                 result["potenciaativa"].split(" ")[0].replace(",", ".")
             )
-            inverter.power_metric = (result["potenciaativa"].split(" ")[1],)
+            inverter.power_metric = result["potenciaativa"].split(" ")[1]
 
             self._populate_MPPT(result=result, inverter=inverter)
         except LoginError:
