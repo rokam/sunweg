@@ -177,7 +177,7 @@ class APIHelper(metaclass=SingletonMeta):
                 ),
                 today_energy_metric=result["energiaDoDia"].split(" ")[1],
                 power_factor=float(result["fatorpotencia"].replace(",", ".")),
-                frequency=result["frequencia"],
+                frequency=float(result["frequencia"].replace(",", ".")),
                 power=float(result["potenciaativa"].split(" ")[0].replace(",", ".")),
                 power_metric=result["potenciaativa"].split(" ")[1],
                 status=Status(int(result["statusInversor"])),
