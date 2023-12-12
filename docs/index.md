@@ -1,6 +1,12 @@
 # Table of Contents
 
 * [sunweg](#sunweg)
+* [sunweg.const](#sunweg.const)
+  * [SUNWEG\_URL](#sunweg.const.SUNWEG_URL)
+  * [SUNWEG\_LOGIN\_PATH](#sunweg.const.SUNWEG_LOGIN_PATH)
+  * [SUNWEG\_PLANT\_LIST\_PATH](#sunweg.const.SUNWEG_PLANT_LIST_PATH)
+  * [SUNWEG\_PLANT\_DETAIL\_PATH](#sunweg.const.SUNWEG_PLANT_DETAIL_PATH)
+  * [SUNWEG\_INVERTER\_DETAIL\_PATH](#sunweg.const.SUNWEG_INVERTER_DETAIL_PATH)
 * [sunweg.device](#sunweg.device)
   * [Phase](#sunweg.device.Phase)
     * [\_\_init\_\_](#sunweg.device.Phase.__init__)
@@ -31,14 +37,20 @@
     * [temperature](#sunweg.device.Inverter.temperature)
     * [today\_energy](#sunweg.device.Inverter.today_energy)
     * [today\_energy](#sunweg.device.Inverter.today_energy)
+    * [today\_energy\_metric](#sunweg.device.Inverter.today_energy_metric)
+    * [today\_energy\_metric](#sunweg.device.Inverter.today_energy_metric)
     * [total\_energy](#sunweg.device.Inverter.total_energy)
     * [total\_energy](#sunweg.device.Inverter.total_energy)
+    * [total\_energy\_metric](#sunweg.device.Inverter.total_energy_metric)
+    * [total\_energy\_metric](#sunweg.device.Inverter.total_energy_metric)
     * [power\_factor](#sunweg.device.Inverter.power_factor)
     * [power\_factor](#sunweg.device.Inverter.power_factor)
     * [frequency](#sunweg.device.Inverter.frequency)
     * [frequency](#sunweg.device.Inverter.frequency)
     * [power](#sunweg.device.Inverter.power)
     * [power](#sunweg.device.Inverter.power)
+    * [power\_metric](#sunweg.device.Inverter.power_metric)
+    * [power\_metric](#sunweg.device.Inverter.power_metric)
     * [is\_complete](#sunweg.device.Inverter.is_complete)
     * [phases](#sunweg.device.Inverter.phases)
     * [mppts](#sunweg.device.Inverter.mppts)
@@ -53,15 +65,12 @@
     * [performance\_rate](#sunweg.plant.Plant.performance_rate)
     * [saving](#sunweg.plant.Plant.saving)
     * [today\_energy](#sunweg.plant.Plant.today_energy)
+    * [today\_energy\_metric](#sunweg.plant.Plant.today_energy_metric)
     * [total\_energy](#sunweg.plant.Plant.total_energy)
     * [total\_carbon\_saving](#sunweg.plant.Plant.total_carbon_saving)
     * [last\_update](#sunweg.plant.Plant.last_update)
     * [inverters](#sunweg.plant.Plant.inverters)
     * [\_\_str\_\_](#sunweg.plant.Plant.__str__)
-* [sunweg.util](#sunweg.util)
-  * [Status](#sunweg.util.Status)
-  * [SingletonMeta](#sunweg.util.SingletonMeta)
-    * [\_\_call\_\_](#sunweg.util.SingletonMeta.__call__)
 * [sunweg.api](#sunweg.api)
   * [SunWegApiError](#sunweg.api.SunWegApiError)
   * [LoginError](#sunweg.api.LoginError)
@@ -72,18 +81,50 @@
     * [plant](#sunweg.api.APIHelper.plant)
     * [inverter](#sunweg.api.APIHelper.inverter)
     * [complete\_inverter](#sunweg.api.APIHelper.complete_inverter)
-* [sunweg.const](#sunweg.const)
-  * [SUNWEG\_URL](#sunweg.const.SUNWEG_URL)
-  * [SUNWEG\_LOGIN\_PATH](#sunweg.const.SUNWEG_LOGIN_PATH)
-  * [SUNWEG\_PLANT\_LIST\_PATH](#sunweg.const.SUNWEG_PLANT_LIST_PATH)
-  * [SUNWEG\_PLANT\_DETAIL\_PATH](#sunweg.const.SUNWEG_PLANT_DETAIL_PATH)
-  * [SUNWEG\_INVERTER\_DETAIL\_PATH](#sunweg.const.SUNWEG_INVERTER_DETAIL_PATH)
+* [sunweg.util](#sunweg.util)
+  * [Status](#sunweg.util.Status)
 
 <a id="sunweg"></a>
 
 # sunweg
 
 Sunweg API library.
+
+<a id="sunweg.const"></a>
+
+# sunweg.const
+
+Sunweg API constants.
+
+<a id="sunweg.const.SUNWEG_URL"></a>
+
+#### SUNWEG\_URL
+
+SunWEG API URL
+
+<a id="sunweg.const.SUNWEG_LOGIN_PATH"></a>
+
+#### SUNWEG\_LOGIN\_PATH
+
+SunWEG API login path
+
+<a id="sunweg.const.SUNWEG_PLANT_LIST_PATH"></a>
+
+#### SUNWEG\_PLANT\_LIST\_PATH
+
+SunWEG API list plants path
+
+<a id="sunweg.const.SUNWEG_PLANT_DETAIL_PATH"></a>
+
+#### SUNWEG\_PLANT\_DETAIL\_PATH
+
+SunWEG API plant details path
+
+<a id="sunweg.const.SUNWEG_INVERTER_DETAIL_PATH"></a>
+
+#### SUNWEG\_INVERTER\_DETAIL\_PATH
+
+SunWEG API inverter details path
 
 <a id="sunweg.device"></a>
 
@@ -388,10 +429,13 @@ def __init__(id: int,
              status: Status,
              temperature: int,
              total_energy: float = 0,
+             total_energy_metric: str = "",
              today_energy: float = 0,
+             today_energy_metric: str = "",
              power_factor: float = 0,
              frequency: float = 0,
-             power: float = 0) -> None
+             power: float = 0,
+             power_metric: str = "") -> None
 ```
 
 Initialize Inverter.
@@ -403,11 +447,14 @@ Initialize Inverter.
 - `sn` (`str`): inverter serial number
 - `status` (`Status`): inverter status
 - `temperature` (`int`): inverter temperature
-- `total_energy` (`float`): total generated energy in kWh
-- `today_energy` (`float`): total generated energy today in kWh
+- `total_energy` (`float`): total generated energy
+- `total_energy_metric` (`str`): total generated energy metric
+- `today_energy` (`float`): total generated energy today
+- `today_energy_metric` (`str`): total generated energy today metric
 - `power_factor` (`float`): inverter power factor
 - `frequency` (`float`): inverter output frequency in Hz
-- `power` (`float`): inverter output power in W
+- `power` (`str`): inverter output power
+- `power` (`str`): inverter output power metric
 
 <a id="sunweg.device.Inverter.id"></a>
 
@@ -493,11 +540,11 @@ Get inverter temperature.
 def today_energy() -> float
 ```
 
-Get inverter today generated energy in kWh.
+Get inverter today generated energy.
 
 **Returns**:
 
-`float`: inverter today generated energy in kWh
+`float`: inverter today generated energy
 
 <a id="sunweg.device.Inverter.today_energy"></a>
 
@@ -508,11 +555,41 @@ Get inverter today generated energy in kWh.
 def today_energy(value: float) -> None
 ```
 
-Set inverter today generated energy in kWh.
+Set inverter today generated energy.
 
 **Arguments**:
 
-- `value` (`float`): inverter today generated energy in kWh
+- `value` (`float`): inverter today generated energy
+
+<a id="sunweg.device.Inverter.today_energy_metric"></a>
+
+#### today\_energy\_metric
+
+```python
+@property
+def today_energy_metric() -> str
+```
+
+Get inverter today generated energy metric.
+
+**Returns**:
+
+`str`: inverter today generated energy metric
+
+<a id="sunweg.device.Inverter.today_energy_metric"></a>
+
+#### today\_energy\_metric
+
+```python
+@today_energy_metric.setter
+def today_energy_metric(value: str) -> None
+```
+
+Set inverter today generated energy metric.
+
+**Arguments**:
+
+- `value` (`str`): inverter today generated energy metric
 
 <a id="sunweg.device.Inverter.total_energy"></a>
 
@@ -523,11 +600,11 @@ Set inverter today generated energy in kWh.
 def total_energy() -> float
 ```
 
-Get inverter total generated energy in kWh.
+Get inverter total generated energy.
 
 **Returns**:
 
-`float`: inverter total generated energy in kWh
+`float`: inverter total generated energy
 
 <a id="sunweg.device.Inverter.total_energy"></a>
 
@@ -538,11 +615,41 @@ Get inverter total generated energy in kWh.
 def total_energy(value: float) -> None
 ```
 
-Set inverter total generated energy in kWh.
+Set inverter total generated energy.
 
 **Arguments**:
 
-- `value` (`float`): inverter total generated energy in kWh
+- `value` (`float`): inverter total generated energy
+
+<a id="sunweg.device.Inverter.total_energy_metric"></a>
+
+#### total\_energy\_metric
+
+```python
+@property
+def total_energy_metric() -> str
+```
+
+Get inverter total generated energy metric.
+
+**Returns**:
+
+`str`: inverter total generated energy metric
+
+<a id="sunweg.device.Inverter.total_energy_metric"></a>
+
+#### total\_energy\_metric
+
+```python
+@total_energy_metric.setter
+def total_energy_metric(value: str) -> None
+```
+
+Set inverter total generated energy metric.
+
+**Arguments**:
+
+- `value` (`str`): inverter total generated energy metric
 
 <a id="sunweg.device.Inverter.power_factor"></a>
 
@@ -613,11 +720,11 @@ Set inverter frequency in Hz.
 def power() -> float
 ```
 
-Get inverter output power in W.
+Get inverter output power.
 
 **Returns**:
 
-`float`: inverter output power in W
+`float`: inverter output power
 
 <a id="sunweg.device.Inverter.power"></a>
 
@@ -628,11 +735,41 @@ Get inverter output power in W.
 def power(value: float) -> None
 ```
 
-Set inverter output power in W.
+Set inverter output power.
 
 **Arguments**:
 
-- `value` (`float`): inverter output power in W
+- `value` (`float`): inverter output power
+
+<a id="sunweg.device.Inverter.power_metric"></a>
+
+#### power\_metric
+
+```python
+@property
+def power_metric() -> str
+```
+
+Get inverter output power metric.
+
+**Returns**:
+
+`str`: inverter output power metric
+
+<a id="sunweg.device.Inverter.power_metric"></a>
+
+#### power\_metric
+
+```python
+@power_metric.setter
+def power_metric(value: str) -> None
+```
+
+Set inverter output power metric.
+
+**Arguments**:
+
+- `value` (`float`): inverter output power metric
 
 <a id="sunweg.device.Inverter.is_complete"></a>
 
@@ -712,8 +849,8 @@ Plant details.
 ```python
 def __init__(id: int, name: str, total_power: float, kwh_per_kwp: float,
              performance_rate: float, saving: float, today_energy: float,
-             total_energy: float, total_carbon_saving: float,
-             last_update: datetime) -> None
+             today_energy_metric: str, total_energy: float,
+             total_carbon_saving: float, last_update: datetime) -> None
 ```
 
 Initialize Plant.
@@ -726,7 +863,8 @@ Initialize Plant.
 - `kwh_per_kwp` (`float`): plant kWh/kWp
 - `performance_rate` (`float`): plant performance rate
 - `saving` (`float`): total saving in R$
-- `today_energy` (`float`): today generated energy in kWh
+- `today_energy` (`float`): today generated energy
+- `today_energy_metric` (`str`): today generated energy metric
 - `total_energy` (`float`): total generated energy in kWh
 - `total_carbon_saving` (`float`): total of CO2 saved
 - `last_update` (`datetime`): when the data was updated
@@ -830,11 +968,26 @@ Get plant saving in R$.
 def today_energy() -> float
 ```
 
-Get plant today generated energy in kWh.
+Get plant today generated energy.
 
 **Returns**:
 
-`float`: plant today generated energy in kWh
+`float`: plant today generated energy
+
+<a id="sunweg.plant.Plant.today_energy_metric"></a>
+
+#### today\_energy\_metric
+
+```python
+@property
+def today_energy_metric() -> str
+```
+
+Get plant today generated energy metric.
+
+**Returns**:
+
+`str`: plant today generated energy metric
 
 <a id="sunweg.plant.Plant.total_energy"></a>
 
@@ -906,42 +1059,6 @@ def __str__() -> str
 
 Cast Plant to str.
 
-<a id="sunweg.util"></a>
-
-# sunweg.util
-
-Sunweg API util.
-
-<a id="sunweg.util.Status"></a>
-
-## Status Objects
-
-```python
-class Status(Enum)
-```
-
-Status enum.
-
-<a id="sunweg.util.SingletonMeta"></a>
-
-## SingletonMeta Objects
-
-```python
-class SingletonMeta(type)
-```
-
-Singleton meta.
-
-<a id="sunweg.util.SingletonMeta.__call__"></a>
-
-#### \_\_call\_\_
-
-```python
-def __call__(cls, *args, **kwargs)
-```
-
-Handle singleton creation.
-
 <a id="sunweg.api"></a>
 
 # sunweg.api
@@ -973,10 +1090,10 @@ Login Error.
 ## APIHelper Objects
 
 ```python
-class APIHelper(metaclass=SingletonMeta)
+class APIHelper()
 ```
 
-Singleton class to call sunweg.net api.
+Class to call sunweg.net api.
 
 <a id="sunweg.api.APIHelper.__init__"></a>
 
@@ -1080,39 +1197,19 @@ Complete inverter data.
 - `inverter` (`Inverter`): inverter object to be completed with information
 - `retry` (`bool`): reauthenticate if token expired and retry
 
-<a id="sunweg.const"></a>
+<a id="sunweg.util"></a>
 
-# sunweg.const
+# sunweg.util
 
-Sunweg API constants.
+Sunweg API util.
 
-<a id="sunweg.const.SUNWEG_URL"></a>
+<a id="sunweg.util.Status"></a>
 
-#### SUNWEG\_URL
+## Status Objects
 
-SunWEG API URL
+```python
+class Status(Enum)
+```
 
-<a id="sunweg.const.SUNWEG_LOGIN_PATH"></a>
-
-#### SUNWEG\_LOGIN\_PATH
-
-SunWEG API login path
-
-<a id="sunweg.const.SUNWEG_PLANT_LIST_PATH"></a>
-
-#### SUNWEG\_PLANT\_LIST\_PATH
-
-SunWEG API list plants path
-
-<a id="sunweg.const.SUNWEG_PLANT_DETAIL_PATH"></a>
-
-#### SUNWEG\_PLANT\_DETAIL\_PATH
-
-SunWEG API plant details path
-
-<a id="sunweg.const.SUNWEG_INVERTER_DETAIL_PATH"></a>
-
-#### SUNWEG\_INVERTER\_DETAIL\_PATH
-
-SunWEG API inverter details path
+Status enum.
 
