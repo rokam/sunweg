@@ -277,3 +277,13 @@ class Api_Test(TestCase):
             )
             api.complete_inverter(inverter)
             assert not inverter.is_complete
+
+    def test_setters(self) -> None:
+        api = APIHelper("user@acme.com", "password")
+        assert api._username == "user@acme.com"
+        assert api._password == "password"
+        
+        api.username = "user1@acme.com"
+        api.password = "password1"
+        assert api._username == "user1@acme.com"
+        assert api._password == "password1"
