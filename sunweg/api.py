@@ -14,7 +14,7 @@ from .const import (
 )
 from .device import MPPT, Inverter, Phase, String
 from .plant import Plant
-from .util import SingletonMeta, Status
+from .util import Status
 
 
 class SunWegApiError(RuntimeError):
@@ -29,8 +29,8 @@ class LoginError(SunWegApiError):
     pass
 
 
-class APIHelper(metaclass=SingletonMeta):
-    """Singleton class to call sunweg.net api."""
+class APIHelper():
+    """Class to call sunweg.net api."""
 
     SERVER_URI = SUNWEG_URL
 
@@ -47,6 +47,28 @@ class APIHelper(metaclass=SingletonMeta):
         self._username = username
         self._password = password
         self.session = session()
+    
+    def _set_username(self, username:str) -> None:
+        """
+        Set username.
+        
+        :param username: username for authentication
+        :type username: str
+        """
+        self._username = username
+
+    username = property(None, _set_username)
+
+    def _set_password(self, password:str) -> None:
+        """
+        Set password.
+        
+        :param password: password for authentication
+        :type password: str
+        """
+        self._password = password
+
+    password = property(None, _set_password)
 
     def authenticate(self) -> bool:
         """
