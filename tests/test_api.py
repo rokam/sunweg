@@ -8,7 +8,7 @@ import pytest
 
 from requests import Response
 
-from sunweg.api import APIHelper, SunWegApiError
+from sunweg.api import APIHelper, convert_situation_status, SunWegApiError
 from sunweg.device import Inverter, String
 from sunweg.util import Status
 
@@ -33,6 +33,16 @@ class Api_Test(TestCase):
                     response.status_code = 200
                     response._content = "".join(f.readlines()).encode()
                 self.responses[filename] = response
+
+    def test_convert_situation_status(self) -> None:
+        """Test the conversion from situation to status."""
+        status_ok: Status = convert_situation_status(1)
+        status_err: Status = convert_situation_status(0)
+        status_wrn: Status = convert_situation_status(2)
+
+        assert status_ok == Status.OK
+        assert status_err == Status.ERROR
+        assert status_wrn == Status.WARN
 
     def test_error500(self) -> None:
         """Test error 500."""
