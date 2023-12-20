@@ -8,7 +8,7 @@ import pytest
 
 from requests import Response
 
-from sunweg.api import APIHelper, convert_situation_status, SunWegApiError
+from sunweg.api import APIHelper, convert_situation_status, SunWegApiError, separate_value_metric
 from sunweg.device import Inverter, String
 from sunweg.util import Status
 
@@ -34,6 +34,7 @@ class Api_Test(TestCase):
                     response._content = "".join(f.readlines()).encode()
                 self.responses[filename] = response
 
+
     def test_convert_situation_status(self) -> None:
         """Test the conversion from situation to status."""
         status_ok: Status = convert_situation_status(1)
@@ -43,6 +44,46 @@ class Api_Test(TestCase):
         assert status_ok == Status.OK
         assert status_err == Status.ERROR
         assert status_wrn == Status.WARN
+
+
+    def test_separate_value_metric_comma(self) -> None:
+        """Test the separation from value and metric of string with comma."""
+        (value,metric) = separate_value_metric("0,0")
+        assert value == 0
+        assert metric == ""
+        (value,metric) = separate_value_metric("1,0", "W")
+        assert value == 1.0
+        assert metric == "W"
+        (value,metric) = separate_value_metric("0,2 kW", "W")
+        assert value == 0.2
+        assert metric == "kW"
+
+
+    def test_separate_value_metric_dot(self) -> None:
+        """Test the separation from value and metric of string with dot."""
+        (value,metric) = separate_value_metric("0.0")
+        assert value == 0
+        assert metric == ""
+        (value,metric) = separate_value_metric("1.0", "W")
+        assert value == 1.0
+        assert metric == "W"
+        (value,metric) = separate_value_metric("0.2 kW", "W")
+        assert value == 0.2
+        assert metric == "kW"
+
+
+    def test_separate_value_metric_none_int(self) -> None:
+        """Test the separation from value and metric of string with dot."""
+        (value,metric) = separate_value_metric(None)
+        assert value == 0
+        assert metric == ""
+        (value,metric) = separate_value_metric("1", "W")
+        assert value == 1.0
+        assert metric == "W"
+        (value,metric) = separate_value_metric("2 kW", "W")
+        assert value == 2.0
+        assert metric == "kW"
+
 
     def test_error500(self) -> None:
         """Test error 500."""

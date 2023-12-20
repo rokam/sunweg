@@ -45,6 +45,27 @@ def convert_situation_status(situation: int) -> Status:
     return Status.WARN
 
 
+def separate_value_metric(value_with_metric: str | None, default_metric: str = "") -> tuple[float, str]:
+    """
+    Separate the value from the metric.
+
+    :param value_with_metric: value with metric separated by space
+    :type value_with_metric: str | None
+    :param default_metric: metric that should be returned if `value_with_metric` is None
+    :type default_metric: str
+    :return: tuple with value and metric
+    :rtype: tuple[float, str]
+    """
+    if value_with_metric is None or len(value_with_metric) == 0:
+        return (0.0, default_metric)
+    split = value_with_metric.split(" ")
+    return (
+        float(split[0].replace(",", ".")),
+        default_metric if len(split) < 2 else split[1]
+    )
+
+
+
 class APIHelper():
     """Class to call sunweg.net api."""
 
@@ -146,23 +167,19 @@ class APIHelper():
         try:
             result = self._get(SUNWEG_PLANT_DETAIL_PATH + str(id))
 
+            (today_energy, today_energy_metric) = separate_value_metric(result["energiaGeradaHoje"], "kWh")
+            total_power = separate_value_metric(result["AcumuladoPotencia"])[0]
             plant = Plant(
                 id=id,
                 name=result["usinas"]["nome"],
-                total_power=float(
-                    str(result["AcumuladoPotencia"])
-                    .replace(" kW", "")
-                    .replace(",", ".")
-                ),
+                total_power=total_power,
                 kwh_per_kwp=float(str(result["KWHporkWp"]).replace(",", "."))
                 if result["KWHporkWp"] != ""
                 else float(0),
                 performance_rate=result["taxaPerformance"],
                 saving=result["economia"],
-                today_energy=float(
-                    str(result["energiaGeradaHoje"]).split(" ")[0].replace(",", ".")
-                ),
-                today_energy_metric=str(result["energiaGeradaHoje"]).split(" ")[1],
+                today_energy=today_energy,
+                today_energy_metric=today_energy_metric,
                 total_energy=float(result["energiaacumuladanumber"]),
                 total_carbon_saving=result["reduz_carbono_total_number"],
                 last_update=datetime.strptime(
@@ -202,22 +219,21 @@ class APIHelper():
         """
         try:
             result = self._get(SUNWEG_INVERTER_DETAIL_PATH + str(id))
+            (total_energy, total_energy_metric) = separate_value_metric(result["energiaacumulada"], "kWh")
+            (today_energy, today_energy_metric) = separate_value_metric(result["energiadodia"], "kWh")
+            (power, power_metric) = separate_value_metric(result["potenciaativa"], "kW")
             inverter = Inverter(
                 id=id,
                 name=result["inversor"]["nome"],
                 sn=result["inversor"]["esn"],
-                total_energy=float(
-                    result["energiaacumulada"].split(" ")[0].replace(",", ".")
-                ),
-                total_energy_metric=result["energiaacumulada"].split(" ")[1],
-                today_energy=float(
-                    result["energiadodia"].split(" ")[0].replace(",", ".")
-                ),
-                today_energy_metric=result["energiadodia"].split(" ")[1],
+                total_energy=total_energy,
+                total_energy_metric=total_energy_metric,
+                today_energy=today_energy,
+                today_energy_metric=today_energy_metric,
                 power_factor=float(result["fatorpotencia"].replace(",", ".")),
                 frequency=float(result["frequencia"].replace(",", ".")),
-                power=float(result["potenciaativa"].split(" ")[0].replace(",", ".")),
-                power_metric=result["potenciaativa"].split(" ")[1],
+                power=power,
+                power_metric=power_metric,
                 status=Status(int(result["statusInversor"])),
                 temperature=result["temperatura"],
             )
@@ -242,20 +258,11 @@ class APIHelper():
         """
         try:
             result = self._get(SUNWEG_INVERTER_DETAIL_PATH + str(inverter.id))
-            inverter.total_energy = float(
-                result["energiaacumulada"].split(" ")[0].replace(",", ".")
-            )
-            inverter.total_energy_metric = result["energiaacumulada"].split(" ")[1]
-            inverter.today_energy = float(
-                result["energiadodia"].split(" ")[0].replace(",", ".")
-            )
-            inverter.today_energy_metric = result["energiadodia"].split(" ")[1]
+            (inverter.total_energy, inverter.total_energy_metric) = separate_value_metric(result["energiaacumulada"], "kWh")
+            (inverter.today_energy, inverter.today_energy_metric) = separate_value_metric(result["energiadodia"], "kWh")
+            (inverter.power, inverter.power_metric) = separate_value_metric(result["potenciaativa"], "kW")
             inverter.power_factor = float(result["fatorpotencia"].replace(",", "."))
             inverter.frequency = float(result["frequencia"].replace(",", "."))
-            inverter.power = float(
-                result["potenciaativa"].split(" ")[0].replace(",", ".")
-            )
-            inverter.power_metric = result["potenciaativa"].split(" ")[1]
 
             self._populate_MPPT(result=result, inverter=inverter)
         except LoginError:
