@@ -11,7 +11,7 @@ requires = [
 
 setuptools.setup(
     name="sunweg",
-    version="2.0.1",
+    version="2.0.2",
     author="rokam",
     author_email="lucas@mindello.com.br",
     description="A library to retrieve data from sunweg.net",
