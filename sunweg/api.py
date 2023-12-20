@@ -28,10 +28,11 @@ class LoginError(SunWegApiError):
 
     pass
 
-def convert_situation_status(situation:int)->Status:
+
+def convert_situation_status(situation: int) -> Status:
     """
     Convert situation to status.
-    
+
     :param situation: situation
     :type situation: int
     :return: equivalent status
@@ -42,7 +43,7 @@ def convert_situation_status(situation:int)->Status:
     if situation == 1:
         return Status.OK
     return Status.WARN
-        
+
 
 class APIHelper():
     """Class to call sunweg.net api."""
