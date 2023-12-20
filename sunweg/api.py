@@ -28,6 +28,21 @@ class LoginError(SunWegApiError):
 
     pass
 
+def convert_situation_status(situation:int)->Status:
+    """
+    Convert situation to status.
+    
+    :param situation: situation
+    :type situation: int
+    :return: equivalent status
+    :rtype: Status
+    """
+    if situation == 0:
+        return Status.ERROR
+    if situation == 1:
+        return Status.OK
+    return Status.WARN
+        
 
 class APIHelper():
     """Class to call sunweg.net api."""
@@ -191,13 +206,13 @@ class APIHelper():
                 name=result["inversor"]["nome"],
                 sn=result["inversor"]["esn"],
                 total_energy=float(
-                    result["energiaAcumulada"].split(" ")[0].replace(",", ".")
+                    result["energiaacumulada"].split(" ")[0].replace(",", ".")
                 ),
-                total_energy_metric=result["energiaAcumulada"].split(" ")[1],
+                total_energy_metric=result["energiaacumulada"].split(" ")[1],
                 today_energy=float(
-                    result["energiaDoDia"].split(" ")[0].replace(",", ".")
+                    result["energiadodia"].split(" ")[0].replace(",", ".")
                 ),
-                today_energy_metric=result["energiaDoDia"].split(" ")[1],
+                today_energy_metric=result["energiadodia"].split(" ")[1],
                 power_factor=float(result["fatorpotencia"].replace(",", ".")),
                 frequency=float(result["frequencia"].replace(",", ".")),
                 power=float(result["potenciaativa"].split(" ")[0].replace(",", ".")),
@@ -227,13 +242,13 @@ class APIHelper():
         try:
             result = self._get(SUNWEG_INVERTER_DETAIL_PATH + str(inverter.id))
             inverter.total_energy = float(
-                result["energiaAcumulada"].split(" ")[0].replace(",", ".")
+                result["energiaacumulada"].split(" ")[0].replace(",", ".")
             )
-            inverter.total_energy_metric = result["energiaAcumulada"].split(" ")[1]
+            inverter.total_energy_metric = result["energiaacumulada"].split(" ")[1]
             inverter.today_energy = float(
-                result["energiaDoDia"].split(" ")[0].replace(",", ".")
+                result["energiadodia"].split(" ")[0].replace(",", ".")
             )
-            inverter.today_energy_metric = result["energiaDoDia"].split(" ")[1]
+            inverter.today_energy_metric = result["energiadodia"].split(" ")[1]
             inverter.power_factor = float(result["fatorpotencia"].replace(",", "."))
             inverter.frequency = float(result["frequencia"].replace(",", "."))
             inverter.power = float(
@@ -255,9 +270,9 @@ class APIHelper():
             for str_string in str_mppt["strings"]:
                 string = String(
                     str_string["nome"],
-                    float(str_string["valorTensao"]),
-                    float(str_string["valorCorrente"]),
-                    Status(int(str_string["status"])),
+                    float(result["inversor"]["leitura"][str_string["variaveltensao"]]),
+                    float(result["inversor"]["leitura"][str_string["variavelcorrente"]]),
+                    convert_situation_status(int(str_string["situacao"])),
                 )
                 mppt.strings.append(string)
 

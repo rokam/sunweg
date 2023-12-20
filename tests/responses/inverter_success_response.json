@@ -9,17 +9,15 @@
       "strings": [
         {
           "nome": "ST 01",
-          "valorTensao": "548.2",
-          "valorCorrente": "0.3",
-          "situacao": 1,
-          "status": 2
+          "variaveltensao": "Upv1",
+          "variavelcorrente": "Ipv1",
+          "situacao": 1
         },
         {
           "nome": "ST 02",
-          "valorTensao": "783.1",
-          "valorCorrente": "0.3",
-          "situacao": 1,
-          "status": 2
+          "variaveltensao": "Upv2",
+          "variavelcorrente": "Ipv2",
+          "situacao": 1
         }
       ]
     },
@@ -28,17 +26,15 @@
       "strings": [
         {
           "nome": "ST 03",
-          "valorTensao": "743.1",
-          "valorCorrente": "1.2",
-          "situacao": 1,
-          "status": 2
+          "variaveltensao": "Upv3",
+          "variavelcorrente": "Ipv3",
+          "situacao": 1
         },
         {
           "nome": "ST 04",
-          "valorTensao": "542.2",
-          "valorCorrente": "2.1",
-          "situacao": 1,
-          "status": 2
+          "variaveltensao": "Upv4",
+          "variavelcorrente": "Ipv4",
+          "situacao": 1
         }
       ]
     }
@@ -50,7 +46,17 @@
     "esn": "1234ABC",
     "situacao": 1,
     "tensaoca": 242,
-    "temperatura": 80
+    "temperatura": 80,
+    "leitura": {
+      "Upv1": 429.6000000000000227373675443232059478759765625,
+      "Upv2": 415,
+      "Upv3": 418,
+      "Upv4": 525.13,
+      "Ipv1": 3, 
+      "Ipv2": 2.1, 
+      "Ipv3": 4.2, 
+      "Ipv4": 5 
+    }
   },
   "correnteCA": {
     "faseA": "0,20",
@@ -69,8 +75,8 @@
     "faseCstatus": 1
   },
   "potenciaativa": "0,00 kW",
-  "energiaDoDia": "0,00 kWh",
-  "energiaAcumulada": "23,20 kWh",
+  "energiadodia": "0,00 kWh",
+  "energiaacumulada": "23,20 kWh",
   "frequencia": "59,85",
   "statusInversor": 0
 }

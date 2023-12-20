@@ -188,7 +188,7 @@ class Api_Test(TestCase):
                 assert string.name != ""
                 assert string.amperage != 0
                 assert string.voltage != 0
-                assert string.status == Status.WARN
+                assert string.status == Status.OK
                 assert string.__str__().startswith("<class 'sunweg.device.String'>")
             for phase in inverter.phases:
                 assert phase.name != ""
@@ -248,7 +248,7 @@ class Api_Test(TestCase):
                 assert string.name != ""
                 assert string.amperage != 0
                 assert string.voltage != 0
-                assert string.status == Status.WARN
+                assert string.status == Status.OK
                 assert string.__str__().startswith("<class 'sunweg.device.String'>")
             for phase in inverter.phases:
                 assert phase.name != ""
