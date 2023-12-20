@@ -1,0 +1,17 @@
+./sunweg/api.py:69:1: E303 too many blank lines (3)
+./tests/test_api.py:38:5: E303 too many blank lines (2)
+./tests/test_api.py:49:5: E303 too many blank lines (2)
+./tests/test_api.py:51:15: E231 missing whitespace after ','
+./tests/test_api.py:54:15: E231 missing whitespace after ','
+./tests/test_api.py:57:15: E231 missing whitespace after ','
+./tests/test_api.py:62:5: E303 too many blank lines (2)
+./tests/test_api.py:64:15: E231 missing whitespace after ','
+./tests/test_api.py:67:15: E231 missing whitespace after ','
+./tests/test_api.py:70:15: E231 missing whitespace after ','
+./tests/test_api.py:75:5: E303 too many blank lines (2)
+./tests/test_api.py:77:15: E231 missing whitespace after ','
+./tests/test_api.py:80:15: E231 missing whitespace after ','
+./tests/test_api.py:83:15: E231 missing whitespace after ','
+./tests/test_api.py:88:5: E303 too many blank lines (2)
+9     E231 missing whitespace after ','
+6     E303 too many blank lines (3)
