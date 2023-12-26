@@ -314,7 +314,8 @@ class APIHelper():
         except LoginError:
             if retry:
                 self.authenticate()
-                self.month_stats_production(year, month, plant_id, inverter_id, False)
+                return self.month_stats_production(year, month, plant_id, inverter_id, False)
+            return []
 
     def _populate_MPPT(self, result: dict, inverter: Inverter) -> None:
         """Populate MPPT information inside a inverter."""
