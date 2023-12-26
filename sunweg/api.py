@@ -1,6 +1,6 @@
 """API Helper."""
 import json
-from datetime import datetime
+from datetime import date, datetime
 from typing import Any
 
 from requests import Response, session
@@ -8,13 +8,14 @@ from requests import Response, session
 from .const import (
     SUNWEG_INVERTER_DETAIL_PATH,
     SUNWEG_LOGIN_PATH,
+    SUNWEG_MONTH_STATS_PATH,
     SUNWEG_PLANT_DETAIL_PATH,
     SUNWEG_PLANT_LIST_PATH,
     SUNWEG_URL,
 )
 from .device import MPPT, Inverter, Phase, String
 from .plant import Plant
-from .util import Status
+from .util import ProductionStats, Status
 
 
 class SunWegApiError(RuntimeError):
@@ -269,6 +270,51 @@ class APIHelper():
             if retry:
                 self.authenticate()
                 self.complete_inverter(inverter, False)
+
+    def month_stats_production(self, year: int, month: int, plant: Plant, inverter: Inverter | None = None, retry: bool = True) -> list[ProductionStats]:
+        """
+        Retrieve month energy production statistics.
+
+        :param year: statistics year
+        :type year: int
+        :param month: statistics month
+        :type month: int
+        :param plant: statistics plant
+        :type plant: Plant
+        :param inverter: statistics inverter, None for every inverter
+        :type inverter: Inverter | None
+        :param retry: reauthenticate if token expired and retry
+        :type retry: bool
+        :return: list of daily energy production statistics
+        :rtype: list[ProductionStats]
+        """
+        return self.month_stats_production(year, month, plant.id, inverter.id if inverter is not None else None, retry)
+
+    def month_stats_production(self, year: int, month: int, plant_id: int, inverter_id: int | None = None, retry: bool = True) -> list[ProductionStats]:
+        """
+        Retrieve month energy production statistics.
+
+        :param year: statistics year
+        :type year: int
+        :param month: statistics month
+        :type month: int
+        :param plant_id: id of statistics plant
+        :type plant_id: int
+        :param inverter_id: id of statistics inverter, None for every inverter
+        :type inverter_id: int | None
+        :param retry: reauthenticate if token expired and retry
+        :type retry: bool
+        :return: list of daily energy production statistics
+        :rtype: list[ProductionStats]
+        """
+        inverter_str:str = str(inverter_id) if inverter_id is not None else ""
+        try:
+            result = self._get(SUNWEG_MONTH_STATS_PATH + f"idusina={plant_id}&idinversor={inverter_str}&date={format(month,'02')}/{year}")
+            return [ProductionStats(datetime.strptime(item["tempoatual"],"%Y-%m-%d").date(), float(item["energiapordia"]), float(item["prognostico"])) for item in result["graficomes"]]
+        except LoginError:
+            if retry:
+                self.authenticate()
+                self.month_stats_production(year, month, plant_id, inverter_id, False)
 
     def _populate_MPPT(self, result: dict, inverter: Inverter) -> None:
         """Populate MPPT information inside a inverter."""

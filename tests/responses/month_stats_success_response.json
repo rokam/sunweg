@@ -1,0 +1,367 @@
+{
+  "success": true,
+  "graficomes": [
+      {
+          "tempoatual": "2023-12-01",
+          "energiapordia": "86.70",
+          "prognostico": "98.774193548387",
+          "maior_energia": "86.70",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-02",
+          "energiapordia": "121.30",
+          "prognostico": "98.774193548387",
+          "maior_energia": "121.30",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-03",
+          "energiapordia": "102.10",
+          "prognostico": "98.774193548387",
+          "maior_energia": "102.10",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-04",
+          "energiapordia": "78.50",
+          "prognostico": "98.774193548387",
+          "maior_energia": "78.50",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-05",
+          "energiapordia": "27.60",
+          "prognostico": "98.774193548387",
+          "maior_energia": "27.60",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-06",
+          "energiapordia": "166.60",
+          "prognostico": "98.774193548387",
+          "maior_energia": "166.60",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-07",
+          "energiapordia": "189.50",
+          "prognostico": "98.774193548387",
+          "maior_energia": "189.50",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-08",
+          "energiapordia": "183.80",
+          "prognostico": "98.774193548387",
+          "maior_energia": "183.80",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-09",
+          "energiapordia": "181.20",
+          "prognostico": "98.774193548387",
+          "maior_energia": "181.20",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-10",
+          "energiapordia": "179.60",
+          "prognostico": "98.774193548387",
+          "maior_energia": "179.60",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-11",
+          "energiapordia": 0,
+          "prognostico": "98.774193548387"
+      },
+      {
+          "tempoatual": "2023-12-12",
+          "energiapordia": 0,
+          "prognostico": "98.774193548387"
+      },
+      {
+          "tempoatual": "2023-12-13",
+          "energiapordia": "188.20",
+          "prognostico": "98.774193548387",
+          "maior_energia": "188.20",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-14",
+          "energiapordia": "184.40",
+          "prognostico": "98.774193548387",
+          "maior_energia": "184.40",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-15",
+          "energiapordia": "193.30",
+          "prognostico": "98.774193548387",
+          "maior_energia": "193.30",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-16",
+          "energiapordia": "149.90",
+          "prognostico": "98.774193548387",
+          "maior_energia": "149.90",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-17",
+          "energiapordia": "154.00",
+          "prognostico": "98.774193548387",
+          "maior_energia": "154.00",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-18",
+          "energiapordia": "86.40",
+          "prognostico": "98.774193548387",
+          "maior_energia": "86.40",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-19",
+          "energiapordia": "144.90",
+          "prognostico": "98.774193548387",
+          "maior_energia": "144.90",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-20",
+          "energiapordia": "126.80",
+          "prognostico": "98.774193548387",
+          "maior_energia": "126.80",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-21",
+          "energiapordia": "85.40",
+          "prognostico": "98.774193548387",
+          "maior_energia": "85.40",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-22",
+          "energiapordia": "110.90",
+          "prognostico": "98.774193548387",
+          "maior_energia": "110.90",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-23",
+          "energiapordia": "107.20",
+          "prognostico": "98.774193548387",
+          "maior_energia": "107.20",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-24",
+          "energiapordia": "127.00",
+          "prognostico": "98.774193548387",
+          "maior_energia": "127.00",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-25",
+          "energiapordia": "119.60",
+          "prognostico": "98.774193548387",
+          "maior_energia": "119.60",
+          "tipo": "N"
+      },
+      {
+          "tempoatual": "2023-12-26",
+          "energiapordia": 28.300000000000000710542735760100185871124267578125,
+          "prognostico": "98.774193548387"
+      },
+      {
+          "tempoatual": "2023-12-27",
+          "energiapordia": 0,
+          "prognostico": "98.774193548387"
+      },
+      {
+          "tempoatual": "2023-12-28",
+          "energiapordia": 0,
+          "prognostico": "98.774193548387"
+      },
+      {
+          "tempoatual": "2023-12-29",
+          "energiapordia": 0,
+          "prognostico": "98.774193548387"
+      },
+      {
+          "tempoatual": "2023-12-30",
+          "energiapordia": 0,
+          "prognostico": "98.774193548387"
+      },
+      {
+          "tempoatual": "2023-12-31",
+          "energiapordia": 0,
+          "prognostico": "98.774193548387"
+      }
+  ],
+  "graficomescalc": [
+      {
+          "tempoatual": "2023-12-01",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-02",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-03",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-04",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-05",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-06",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-07",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-08",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-09",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-10",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-11",
+          "energiapordia": "287.80",
+          "prognostico": "98.774193548387",
+          "maior_energia": "287.80",
+          "tipo": "C"
+      },
+      {
+          "tempoatual": "2023-12-12",
+          "energiapordia": "287.80",
+          "prognostico": "98.774193548387",
+          "maior_energia": "287.80",
+          "tipo": "C"
+      },
+      {
+          "tempoatual": "2023-12-13",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-14",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-15",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-16",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-17",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-18",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-19",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-20",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-21",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-22",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-23",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-24",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-25",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-26",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-27",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-28",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-29",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-30",
+          "energiapordia": 0,
+          "prognostico": 0
+      },
+      {
+          "tempoatual": "2023-12-31",
+          "energiapordia": 0,
+          "prognostico": 0
+      }
+  ]
+}

@@ -1,9 +1,9 @@
 """Test sunweg.api."""
-from datetime import datetime
+from datetime import date, datetime
 from os import path
 import os
 from unittest import TestCase
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 import pytest
 
 from requests import Response
@@ -330,6 +330,7 @@ class Api_Test(TestCase):
             assert not inverter.is_complete
 
     def test_setters(self) -> None:
+        """Test API setters."""
         api = APIHelper("user@acme.com", "password")
         assert api._username == "user@acme.com"
         assert api._password == "password"
@@ -337,3 +338,34 @@ class Api_Test(TestCase):
         api.password = "password1"
         assert api._username == "user1@acme.com"
         assert api._password == "password1"
+
+    def test_month_stats_fail(self) -> None:
+        """Test month stats with error from server."""
+        with patch(
+            "requests.Session.get",
+            return_value=self.responses["month_stats_fail_response.json"],
+        ):
+            api = APIHelper("user@acme.com", "password")
+            plant = MagicMock()
+            plant.id = 1
+            with pytest.raises(SunWegApiError) as e_info:
+                api.month_stats_production(2013, 12, plant)
+            assert e_info.value.__str__() == "Error message"
+
+    def test_month_stats_success(self) -> None:
+        """Test month stats with data from server.""" 
+        with patch(
+            "requests.Session.get",
+            return_value=self.responses["month_stats_success_response.json"],
+        ):
+            api = APIHelper("user@acme.com", "password")
+            plant = MagicMock()
+            plant.id = 1
+            stats = api.month_stats_production(2023, 12, plant)
+            assert len(stats) > 0
+            i: int = 1
+            for stat in stats:
+                assert stat.date == date(2023, 12, i)
+                assert isinstance(stat.production, float)
+                assert stat.prognostic == 98.774193548387
+                i += 1
