@@ -1,3 +1,8 @@
 {
-  "recommendations": ["esbenp.prettier-vscode", "ms-python.python"]
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "ms-python.python",
+    "github.vscode-pull-request-github",
+    "charliermarsh.ruff"
+  ]
 }
