@@ -1,6 +1,6 @@
 """API Helper."""
 import json
-from datetime import date, datetime
+from datetime import datetime
 from typing import Any
 
 from requests import Response, session
