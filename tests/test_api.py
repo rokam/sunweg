@@ -352,6 +352,22 @@ class Api_Test(TestCase):
                 api.month_stats_production(2013, 12, plant)
             assert e_info.value.__str__() == "Error message"
 
+    def test_month_stats_401(self) -> None:
+        """Test month stats with data from server with expired token."""
+        with patch(
+            "requests.Session.post",
+            return_value=self.responses["auth_success_response.json"],
+        ), patch(
+            "requests.Session.get",
+            return_value=self.responses["error_401_response.txt"],
+        ):
+            api = APIHelper("user@acme.com", "password")
+            plant = MagicMock()
+            plant.id = 1
+            stats = api.month_stats_production(2023, 12, plant)
+            assert isinstance(stats, list)
+            assert len(stats) == 0
+
     def test_month_stats_success(self) -> None:
         """Test month stats with data from server.""" 
         with patch(
@@ -368,4 +384,5 @@ class Api_Test(TestCase):
                 assert stat.date == date(2023, 12, i)
                 assert isinstance(stat.production, float)
                 assert stat.prognostic == 98.774193548387
+                assert stat.__str__().startswith("<class 'sunweg.util.ProductionStats'>")
                 i += 1
