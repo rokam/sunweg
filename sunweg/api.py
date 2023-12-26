@@ -288,9 +288,9 @@ class APIHelper():
         :return: list of daily energy production statistics
         :rtype: list[ProductionStats]
         """
-        return self.month_stats_production(year, month, plant.id, inverter.id if inverter is not None else None, retry)
+        return self.month_stats_production_by_id(year, month, plant.id, inverter.id if inverter is not None else None, retry)
 
-    def month_stats_production(self, year: int, month: int, plant_id: int, inverter_id: int | None = None, retry: bool = True) -> list[ProductionStats]:
+    def month_stats_production_by_id(self, year: int, month: int, plant_id: int, inverter_id: int | None = None, retry: bool = True) -> list[ProductionStats]:
         """
         Retrieve month energy production statistics.
 
@@ -314,7 +314,7 @@ class APIHelper():
         except LoginError:
             if retry:
                 self.authenticate()
-                return self.month_stats_production(year, month, plant_id, inverter_id, False)
+                return self.month_stats_production_by_id(year, month, plant_id, inverter_id, False)
             return []
 
     def _populate_MPPT(self, result: dict, inverter: Inverter) -> None:
