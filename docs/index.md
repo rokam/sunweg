@@ -1,12 +1,6 @@
 # Table of Contents
 
 * [sunweg](#sunweg)
-* [sunweg.const](#sunweg.const)
-  * [SUNWEG\_URL](#sunweg.const.SUNWEG_URL)
-  * [SUNWEG\_LOGIN\_PATH](#sunweg.const.SUNWEG_LOGIN_PATH)
-  * [SUNWEG\_PLANT\_LIST\_PATH](#sunweg.const.SUNWEG_PLANT_LIST_PATH)
-  * [SUNWEG\_PLANT\_DETAIL\_PATH](#sunweg.const.SUNWEG_PLANT_DETAIL_PATH)
-  * [SUNWEG\_INVERTER\_DETAIL\_PATH](#sunweg.const.SUNWEG_INVERTER_DETAIL_PATH)
 * [sunweg.device](#sunweg.device)
   * [Phase](#sunweg.device.Phase)
     * [\_\_init\_\_](#sunweg.device.Phase.__init__)
@@ -71,9 +65,26 @@
     * [last\_update](#sunweg.plant.Plant.last_update)
     * [inverters](#sunweg.plant.Plant.inverters)
     * [\_\_str\_\_](#sunweg.plant.Plant.__str__)
+* [sunweg.const](#sunweg.const)
+  * [SUNWEG\_URL](#sunweg.const.SUNWEG_URL)
+  * [SUNWEG\_LOGIN\_PATH](#sunweg.const.SUNWEG_LOGIN_PATH)
+  * [SUNWEG\_PLANT\_LIST\_PATH](#sunweg.const.SUNWEG_PLANT_LIST_PATH)
+  * [SUNWEG\_PLANT\_DETAIL\_PATH](#sunweg.const.SUNWEG_PLANT_DETAIL_PATH)
+  * [SUNWEG\_INVERTER\_DETAIL\_PATH](#sunweg.const.SUNWEG_INVERTER_DETAIL_PATH)
+  * [SUNWEG\_MONTH\_STATS\_PATH](#sunweg.const.SUNWEG_MONTH_STATS_PATH)
+* [sunweg.util](#sunweg.util)
+  * [Status](#sunweg.util.Status)
+  * [ProductionStats](#sunweg.util.ProductionStats)
+    * [\_\_init\_\_](#sunweg.util.ProductionStats.__init__)
+    * [date](#sunweg.util.ProductionStats.date)
+    * [production](#sunweg.util.ProductionStats.production)
+    * [prognostic](#sunweg.util.ProductionStats.prognostic)
+    * [\_\_str\_\_](#sunweg.util.ProductionStats.__str__)
 * [sunweg.api](#sunweg.api)
   * [SunWegApiError](#sunweg.api.SunWegApiError)
   * [LoginError](#sunweg.api.LoginError)
+  * [convert\_situation\_status](#sunweg.api.convert_situation_status)
+  * [separate\_value\_metric](#sunweg.api.separate_value_metric)
   * [APIHelper](#sunweg.api.APIHelper)
     * [\_\_init\_\_](#sunweg.api.APIHelper.__init__)
     * [authenticate](#sunweg.api.APIHelper.authenticate)
@@ -81,50 +92,14 @@
     * [plant](#sunweg.api.APIHelper.plant)
     * [inverter](#sunweg.api.APIHelper.inverter)
     * [complete\_inverter](#sunweg.api.APIHelper.complete_inverter)
-* [sunweg.util](#sunweg.util)
-  * [Status](#sunweg.util.Status)
+    * [month\_stats\_production](#sunweg.api.APIHelper.month_stats_production)
+    * [month\_stats\_production\_by\_id](#sunweg.api.APIHelper.month_stats_production_by_id)
 
 <a id="sunweg"></a>
 
 # sunweg
 
 Sunweg API library.
-
-<a id="sunweg.const"></a>
-
-# sunweg.const
-
-Sunweg API constants.
-
-<a id="sunweg.const.SUNWEG_URL"></a>
-
-#### SUNWEG\_URL
-
-SunWEG API URL
-
-<a id="sunweg.const.SUNWEG_LOGIN_PATH"></a>
-
-#### SUNWEG\_LOGIN\_PATH
-
-SunWEG API login path
-
-<a id="sunweg.const.SUNWEG_PLANT_LIST_PATH"></a>
-
-#### SUNWEG\_PLANT\_LIST\_PATH
-
-SunWEG API list plants path
-
-<a id="sunweg.const.SUNWEG_PLANT_DETAIL_PATH"></a>
-
-#### SUNWEG\_PLANT\_DETAIL\_PATH
-
-SunWEG API plant details path
-
-<a id="sunweg.const.SUNWEG_INVERTER_DETAIL_PATH"></a>
-
-#### SUNWEG\_INVERTER\_DETAIL\_PATH
-
-SunWEG API inverter details path
 
 <a id="sunweg.device"></a>
 
@@ -1059,6 +1034,133 @@ def __str__() -> str
 
 Cast Plant to str.
 
+<a id="sunweg.const"></a>
+
+# sunweg.const
+
+Sunweg API constants.
+
+<a id="sunweg.const.SUNWEG_URL"></a>
+
+#### SUNWEG\_URL
+
+SunWEG API URL
+
+<a id="sunweg.const.SUNWEG_LOGIN_PATH"></a>
+
+#### SUNWEG\_LOGIN\_PATH
+
+SunWEG API login path
+
+<a id="sunweg.const.SUNWEG_PLANT_LIST_PATH"></a>
+
+#### SUNWEG\_PLANT\_LIST\_PATH
+
+SunWEG API list plants path
+
+<a id="sunweg.const.SUNWEG_PLANT_DETAIL_PATH"></a>
+
+#### SUNWEG\_PLANT\_DETAIL\_PATH
+
+SunWEG API plant details path
+
+<a id="sunweg.const.SUNWEG_INVERTER_DETAIL_PATH"></a>
+
+#### SUNWEG\_INVERTER\_DETAIL\_PATH
+
+SunWEG API inverter details path
+
+<a id="sunweg.const.SUNWEG_MONTH_STATS_PATH"></a>
+
+#### SUNWEG\_MONTH\_STATS\_PATH
+
+SunWEG API month history path
+
+<a id="sunweg.util"></a>
+
+# sunweg.util
+
+Sunweg API util.
+
+<a id="sunweg.util.Status"></a>
+
+## Status Objects
+
+```python
+class Status(Enum)
+```
+
+Status enum.
+
+<a id="sunweg.util.ProductionStats"></a>
+
+## ProductionStats Objects
+
+```python
+class ProductionStats()
+```
+
+Energy production statistics
+
+<a id="sunweg.util.ProductionStats.__init__"></a>
+
+#### \_\_init\_\_
+
+```python
+def __init__(date: date, production: float, prognostic: float) -> None
+```
+
+Initialize energy production statistics.
+
+**Arguments**:
+
+- `date` (`date`): statistics date
+- `production` (`float`): statistics production in kWh
+- `prognostic`: statistics expected production in kWh
+
+<a id="sunweg.util.ProductionStats.date"></a>
+
+#### date
+
+```python
+@property
+def date() -> date
+```
+
+Get date.
+
+<a id="sunweg.util.ProductionStats.production"></a>
+
+#### production
+
+```python
+@property
+def production() -> float
+```
+
+Get energy production in kWh.
+
+<a id="sunweg.util.ProductionStats.prognostic"></a>
+
+#### prognostic
+
+```python
+@property
+def prognostic() -> float
+```
+
+Get expected energy production in kWh.
+
+<a id="sunweg.util.ProductionStats.__str__"></a>
+
+#### \_\_str\_\_
+
+```python
+def __str__() -> str
+```
+
+Cast Phase to str.
+
 <a id="sunweg.api"></a>
 
 # sunweg.api
@@ -1084,6 +1186,44 @@ class LoginError(SunWegApiError)
 ```
 
 Login Error.
+
+<a id="sunweg.api.convert_situation_status"></a>
+
+#### convert\_situation\_status
+
+```python
+def convert_situation_status(situation: int) -> Status
+```
+
+Convert situation to status.
+
+**Arguments**:
+
+- `situation` (`int`): situation
+
+**Returns**:
+
+`Status`: equivalent status
+
+<a id="sunweg.api.separate_value_metric"></a>
+
+#### separate\_value\_metric
+
+```python
+def separate_value_metric(value_with_metric: str | None,
+                          default_metric: str = "") -> tuple[float, str]
+```
+
+Separate the value from the metric.
+
+**Arguments**:
+
+- `value_with_metric` (`str | None`): value with metric separated by space
+- `default_metric` (`str`): metric that should be returned if `value_with_metric` is None
+
+**Returns**:
+
+`tuple[float, str]`: tuple with value and metric
 
 <a id="sunweg.api.APIHelper"></a>
 
@@ -1197,19 +1337,55 @@ Complete inverter data.
 - `inverter` (`Inverter`): inverter object to be completed with information
 - `retry` (`bool`): reauthenticate if token expired and retry
 
-<a id="sunweg.util"></a>
+<a id="sunweg.api.APIHelper.month_stats_production"></a>
 
-# sunweg.util
-
-Sunweg API util.
-
-<a id="sunweg.util.Status"></a>
-
-## Status Objects
+#### month\_stats\_production
 
 ```python
-class Status(Enum)
+def month_stats_production(year: int,
+                           month: int,
+                           plant: Plant,
+                           inverter: Inverter | None = None,
+                           retry: bool = True) -> list[ProductionStats]
 ```
 
-Status enum.
+Retrieve month energy production statistics.
+
+**Arguments**:
+
+- `year` (`int`): statistics year
+- `month` (`int`): statistics month
+- `plant` (`Plant`): statistics plant
+- `inverter` (`Inverter | None`): statistics inverter, None for every inverter
+- `retry` (`bool`): reauthenticate if token expired and retry
+
+**Returns**:
+
+`list[ProductionStats]`: list of daily energy production statistics
+
+<a id="sunweg.api.APIHelper.month_stats_production_by_id"></a>
+
+#### month\_stats\_production\_by\_id
+
+```python
+def month_stats_production_by_id(year: int,
+                                 month: int,
+                                 plant_id: int,
+                                 inverter_id: int | None = None,
+                                 retry: bool = True) -> list[ProductionStats]
+```
+
+Retrieve month energy production statistics.
+
+**Arguments**:
+
+- `year` (`int`): statistics year
+- `month` (`int`): statistics month
+- `plant_id` (`int`): id of statistics plant
+- `inverter_id` (`int | None`): id of statistics inverter, None for every inverter
+- `retry` (`bool`): reauthenticate if token expired and retry
+
+**Returns**:
+
+`list[ProductionStats]`: list of daily energy production statistics
 
