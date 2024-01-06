@@ -8,7 +8,12 @@ import pytest
 
 from requests import Response
 
-from sunweg.api import APIHelper, convert_situation_status, SunWegApiError, separate_value_metric
+from sunweg.api import (
+    APIHelper,
+    convert_situation_status,
+    SunWegApiError,
+    separate_value_metric,
+)
 from sunweg.device import Inverter, String
 from sunweg.util import Status
 
@@ -34,7 +39,6 @@ class Api_Test(TestCase):
                     response._content = "".join(f.readlines()).encode()
                 self.responses[filename] = response
 
-
     def test_convert_situation_status(self) -> None:
         """Test the conversion from situation to status."""
         status_ok: Status = convert_situation_status(1)
@@ -45,45 +49,41 @@ class Api_Test(TestCase):
         assert status_err == Status.ERROR
         assert status_wrn == Status.WARN
 
-
     def test_separate_value_metric_comma(self) -> None:
         """Test the separation from value and metric of string with comma."""
-        (value,metric) = separate_value_metric("0,0")
+        (value, metric) = separate_value_metric("0,0")
         assert value == 0
         assert metric == ""
-        (value,metric) = separate_value_metric("1,0", "W")
+        (value, metric) = separate_value_metric("1,0", "W")
         assert value == 1.0
         assert metric == "W"
-        (value,metric) = separate_value_metric("0,2 kW", "W")
+        (value, metric) = separate_value_metric("0,2 kW", "W")
         assert value == 0.2
         assert metric == "kW"
-
 
     def test_separate_value_metric_dot(self) -> None:
         """Test the separation from value and metric of string with dot."""
-        (value,metric) = separate_value_metric("0.0")
+        (value, metric) = separate_value_metric("0.0")
         assert value == 0
         assert metric == ""
-        (value,metric) = separate_value_metric("1.0", "W")
+        (value, metric) = separate_value_metric("1.0", "W")
         assert value == 1.0
         assert metric == "W"
-        (value,metric) = separate_value_metric("0.2 kW", "W")
+        (value, metric) = separate_value_metric("0.2 kW", "W")
         assert value == 0.2
         assert metric == "kW"
 
-
     def test_separate_value_metric_none_int(self) -> None:
         """Test the separation from value and metric of string with dot."""
-        (value,metric) = separate_value_metric(None)
+        (value, metric) = separate_value_metric(None)
         assert value == 0
         assert metric == ""
-        (value,metric) = separate_value_metric("1", "W")
+        (value, metric) = separate_value_metric("1", "W")
         assert value == 1.0
         assert metric == "W"
-        (value,metric) = separate_value_metric("2 kW", "W")
+        (value, metric) = separate_value_metric("2 kW", "W")
         assert value == 2.0
         assert metric == "kW"
-
 
     def test_error500(self) -> None:
         """Test error 500."""
@@ -112,9 +112,7 @@ class Api_Test(TestCase):
             return_value=self.responses["auth_fail_response.json"],
         ):
             api = APIHelper("user@acme.com", "password")
-            with pytest.raises(SunWegApiError) as e_info:
-                api.authenticate()
-            assert e_info.value.__str__() == "Error message"
+            assert not api.authenticate()
 
     def test_list_plants_none_success(self) -> None:
         """Test list plants with empty plant list."""
@@ -369,7 +367,7 @@ class Api_Test(TestCase):
             assert len(stats) == 0
 
     def test_month_stats_success(self) -> None:
-        """Test month stats with data from server.""" 
+        """Test month stats with data from server."""
         with patch(
             "requests.Session.get",
             return_value=self.responses["month_stats_success_response.json"],
@@ -384,5 +382,7 @@ class Api_Test(TestCase):
                 assert stat.date == date(2023, 12, i)
                 assert isinstance(stat.production, float)
                 assert stat.prognostic == 98.774193548387
-                assert stat.__str__().startswith("<class 'sunweg.util.ProductionStats'>")
+                assert stat.__str__().startswith(
+                    "<class 'sunweg.util.ProductionStats'>"
+                )
                 i += 1

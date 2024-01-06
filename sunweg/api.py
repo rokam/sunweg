@@ -46,7 +46,9 @@ def convert_situation_status(situation: int) -> Status:
     return Status.WARN
 
 
-def separate_value_metric(value_with_metric: str | None, default_metric: str = "") -> tuple[float, str]:
+def separate_value_metric(
+    value_with_metric: str | None, default_metric: str = ""
+) -> tuple[float, str]:
     """
     Separate the value from the metric.
 
@@ -62,12 +64,11 @@ def separate_value_metric(value_with_metric: str | None, default_metric: str = "
     split = value_with_metric.split(" ")
     return (
         float(split[0].replace(",", ".")),
-        default_metric if len(split) < 2 else split[1]
+        default_metric if len(split) < 2 else split[1],
     )
 
 
-
-class APIHelper():
+class APIHelper:
     """Class to call sunweg.net api."""
 
     SERVER_URI = SUNWEG_URL
@@ -120,7 +121,9 @@ class APIHelper():
             default=lambda o: o.__dict__,
         )
 
-        result = self._post(SUNWEG_LOGIN_PATH, user_data)
+        result = self._post(SUNWEG_LOGIN_PATH, user_data, False)
+        if not result["success"]:
+            return False
         self._token = result["token"]
         return result["success"]
 
@@ -168,7 +171,9 @@ class APIHelper():
         try:
             result = self._get(SUNWEG_PLANT_DETAIL_PATH + str(id))
 
-            (today_energy, today_energy_metric) = separate_value_metric(result["energiaGeradaHoje"], "kWh")
+            (today_energy, today_energy_metric) = separate_value_metric(
+                result["energiaGeradaHoje"], "kWh"
+            )
             total_power = separate_value_metric(result["AcumuladoPotencia"])[0]
             plant = Plant(
                 id=id,
@@ -220,8 +225,12 @@ class APIHelper():
         """
         try:
             result = self._get(SUNWEG_INVERTER_DETAIL_PATH + str(id))
-            (total_energy, total_energy_metric) = separate_value_metric(result["energiaacumulada"], "kWh")
-            (today_energy, today_energy_metric) = separate_value_metric(result["energiadodia"], "kWh")
+            (total_energy, total_energy_metric) = separate_value_metric(
+                result["energiaacumulada"], "kWh"
+            )
+            (today_energy, today_energy_metric) = separate_value_metric(
+                result["energiadodia"], "kWh"
+            )
             (power, power_metric) = separate_value_metric(result["potenciaativa"], "kW")
             inverter = Inverter(
                 id=id,
@@ -259,9 +268,17 @@ class APIHelper():
         """
         try:
             result = self._get(SUNWEG_INVERTER_DETAIL_PATH + str(inverter.id))
-            (inverter.total_energy, inverter.total_energy_metric) = separate_value_metric(result["energiaacumulada"], "kWh")
-            (inverter.today_energy, inverter.today_energy_metric) = separate_value_metric(result["energiadodia"], "kWh")
-            (inverter.power, inverter.power_metric) = separate_value_metric(result["potenciaativa"], "kW")
+            (
+                inverter.total_energy,
+                inverter.total_energy_metric,
+            ) = separate_value_metric(result["energiaacumulada"], "kWh")
+            (
+                inverter.today_energy,
+                inverter.today_energy_metric,
+            ) = separate_value_metric(result["energiadodia"], "kWh")
+            (inverter.power, inverter.power_metric) = separate_value_metric(
+                result["potenciaativa"], "kW"
+            )
             inverter.power_factor = float(result["fatorpotencia"].replace(",", "."))
             inverter.frequency = float(result["frequencia"].replace(",", "."))
 
@@ -271,7 +288,14 @@ class APIHelper():
                 self.authenticate()
                 self.complete_inverter(inverter, False)
 
-    def month_stats_production(self, year: int, month: int, plant: Plant, inverter: Inverter | None = None, retry: bool = True) -> list[ProductionStats]:
+    def month_stats_production(
+        self,
+        year: int,
+        month: int,
+        plant: Plant,
+        inverter: Inverter | None = None,
+        retry: bool = True,
+    ) -> list[ProductionStats]:
         """
         Retrieve month energy production statistics.
 
@@ -288,9 +312,18 @@ class APIHelper():
         :return: list of daily energy production statistics
         :rtype: list[ProductionStats]
         """
-        return self.month_stats_production_by_id(year, month, plant.id, inverter.id if inverter is not None else None, retry)
+        return self.month_stats_production_by_id(
+            year, month, plant.id, inverter.id if inverter is not None else None, retry
+        )
 
-    def month_stats_production_by_id(self, year: int, month: int, plant_id: int, inverter_id: int | None = None, retry: bool = True) -> list[ProductionStats]:
+    def month_stats_production_by_id(
+        self,
+        year: int,
+        month: int,
+        plant_id: int,
+        inverter_id: int | None = None,
+        retry: bool = True,
+    ) -> list[ProductionStats]:
         """
         Retrieve month energy production statistics.
 
@@ -307,14 +340,26 @@ class APIHelper():
         :return: list of daily energy production statistics
         :rtype: list[ProductionStats]
         """
-        inverter_str:str = str(inverter_id) if inverter_id is not None else ""
+        inverter_str: str = str(inverter_id) if inverter_id is not None else ""
         try:
-            result = self._get(SUNWEG_MONTH_STATS_PATH + f"idusina={plant_id}&idinversor={inverter_str}&date={format(month,'02')}/{year}")
-            return [ProductionStats(datetime.strptime(item["tempoatual"],"%Y-%m-%d").date(), float(item["energiapordia"]), float(item["prognostico"])) for item in result["graficomes"]]
+            result = self._get(
+                SUNWEG_MONTH_STATS_PATH
+                + f"idusina={plant_id}&idinversor={inverter_str}&date={format(month,'02')}/{year}"
+            )
+            return [
+                ProductionStats(
+                    datetime.strptime(item["tempoatual"], "%Y-%m-%d").date(),
+                    float(item["energiapordia"]),
+                    float(item["prognostico"]),
+                )
+                for item in result["graficomes"]
+            ]
         except LoginError:
             if retry:
                 self.authenticate()
-                return self.month_stats_production_by_id(year, month, plant_id, inverter_id, False)
+                return self.month_stats_production_by_id(
+                    year, month, plant_id, inverter_id, False
+                )
             return []
 
     def _populate_MPPT(self, result: dict, inverter: Inverter) -> None:
@@ -326,7 +371,9 @@ class APIHelper():
                 string = String(
                     str_string["nome"],
                     float(result["inversor"]["leitura"][str_string["variaveltensao"]]),
-                    float(result["inversor"]["leitura"][str_string["variavelcorrente"]]),
+                    float(
+                        result["inversor"]["leitura"][str_string["variavelcorrente"]]
+                    ),
                     convert_situation_status(int(str_string["situacao"])),
                 )
                 mppt.strings.append(string)
@@ -346,27 +393,31 @@ class APIHelper():
                 )
             )
 
-    def _get(self, path: str) -> dict:
+    def _get(self, path: str, launch_exception_on_error: bool = True) -> dict:
         """Do a get request returning a treated response."""
         res = self.session.get(self.SERVER_URI + path, headers=self._headers())
-        result = self._treat_response(res)
+        result = self._treat_response(res, launch_exception_on_error)
         return result
 
-    def _post(self, path: str, data: Any | None) -> dict:
+    def _post(
+        self, path: str, data: Any | None, launch_exception_on_error: bool = True
+    ) -> dict:
         """Do a post request returning a treated response."""
         res = self.session.post(
             self.SERVER_URI + path, data=data, headers=self._headers()
         )
-        result = self._treat_response(res)
+        result = self._treat_response(res, launch_exception_on_error)
         return result
 
-    def _treat_response(self, response: Response) -> dict:
+    def _treat_response(
+        self, response: Response, launch_exception_on_error: bool = True
+    ) -> dict:
         """Treat the response from requests."""
         if response.status_code == 401:
             raise LoginError("Request failed: %s" % response)
         if response.status_code != 200:
             raise SunWegApiError("Request failed: %s" % response)
         result = response.json()
-        if not result["success"]:
+        if launch_exception_on_error and not result["success"]:
             raise SunWegApiError(result["message"])
         return result
