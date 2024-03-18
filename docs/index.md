@@ -49,6 +49,27 @@
     * [phases](#sunweg.device.Inverter.phases)
     * [mppts](#sunweg.device.Inverter.mppts)
     * [\_\_str\_\_](#sunweg.device.Inverter.__str__)
+* [sunweg.const](#sunweg.const)
+  * [SUNWEG\_URL](#sunweg.const.SUNWEG_URL)
+  * [SUNWEG\_LOGIN\_PATH](#sunweg.const.SUNWEG_LOGIN_PATH)
+  * [SUNWEG\_PLANT\_LIST\_PATH](#sunweg.const.SUNWEG_PLANT_LIST_PATH)
+  * [SUNWEG\_PLANT\_DETAIL\_PATH](#sunweg.const.SUNWEG_PLANT_DETAIL_PATH)
+  * [SUNWEG\_INVERTER\_DETAIL\_PATH](#sunweg.const.SUNWEG_INVERTER_DETAIL_PATH)
+  * [SUNWEG\_MONTH\_STATS\_PATH](#sunweg.const.SUNWEG_MONTH_STATS_PATH)
+* [sunweg.api](#sunweg.api)
+  * [SunWegApiError](#sunweg.api.SunWegApiError)
+  * [LoginError](#sunweg.api.LoginError)
+  * [convert\_situation\_status](#sunweg.api.convert_situation_status)
+  * [separate\_value\_metric](#sunweg.api.separate_value_metric)
+  * [APIHelper](#sunweg.api.APIHelper)
+    * [\_\_init\_\_](#sunweg.api.APIHelper.__init__)
+    * [authenticate](#sunweg.api.APIHelper.authenticate)
+    * [listPlants](#sunweg.api.APIHelper.listPlants)
+    * [plant](#sunweg.api.APIHelper.plant)
+    * [inverter](#sunweg.api.APIHelper.inverter)
+    * [complete\_inverter](#sunweg.api.APIHelper.complete_inverter)
+    * [month\_stats\_production](#sunweg.api.APIHelper.month_stats_production)
+    * [month\_stats\_production\_by\_id](#sunweg.api.APIHelper.month_stats_production_by_id)
 * [sunweg.plant](#sunweg.plant)
   * [Plant](#sunweg.plant.Plant)
     * [\_\_init\_\_](#sunweg.plant.Plant.__init__)
@@ -65,13 +86,6 @@
     * [last\_update](#sunweg.plant.Plant.last_update)
     * [inverters](#sunweg.plant.Plant.inverters)
     * [\_\_str\_\_](#sunweg.plant.Plant.__str__)
-* [sunweg.const](#sunweg.const)
-  * [SUNWEG\_URL](#sunweg.const.SUNWEG_URL)
-  * [SUNWEG\_LOGIN\_PATH](#sunweg.const.SUNWEG_LOGIN_PATH)
-  * [SUNWEG\_PLANT\_LIST\_PATH](#sunweg.const.SUNWEG_PLANT_LIST_PATH)
-  * [SUNWEG\_PLANT\_DETAIL\_PATH](#sunweg.const.SUNWEG_PLANT_DETAIL_PATH)
-  * [SUNWEG\_INVERTER\_DETAIL\_PATH](#sunweg.const.SUNWEG_INVERTER_DETAIL_PATH)
-  * [SUNWEG\_MONTH\_STATS\_PATH](#sunweg.const.SUNWEG_MONTH_STATS_PATH)
 * [sunweg.util](#sunweg.util)
   * [Status](#sunweg.util.Status)
   * [ProductionStats](#sunweg.util.ProductionStats)
@@ -80,20 +94,6 @@
     * [production](#sunweg.util.ProductionStats.production)
     * [prognostic](#sunweg.util.ProductionStats.prognostic)
     * [\_\_str\_\_](#sunweg.util.ProductionStats.__str__)
-* [sunweg.api](#sunweg.api)
-  * [SunWegApiError](#sunweg.api.SunWegApiError)
-  * [LoginError](#sunweg.api.LoginError)
-  * [convert\_situation\_status](#sunweg.api.convert_situation_status)
-  * [separate\_value\_metric](#sunweg.api.separate_value_metric)
-  * [APIHelper](#sunweg.api.APIHelper)
-    * [\_\_init\_\_](#sunweg.api.APIHelper.__init__)
-    * [authenticate](#sunweg.api.APIHelper.authenticate)
-    * [listPlants](#sunweg.api.APIHelper.listPlants)
-    * [plant](#sunweg.api.APIHelper.plant)
-    * [inverter](#sunweg.api.APIHelper.inverter)
-    * [complete\_inverter](#sunweg.api.APIHelper.complete_inverter)
-    * [month\_stats\_production](#sunweg.api.APIHelper.month_stats_production)
-    * [month\_stats\_production\_by\_id](#sunweg.api.APIHelper.month_stats_production_by_id)
 
 <a id="sunweg"></a>
 
@@ -801,239 +801,6 @@ def __str__() -> str
 
 Cast Inverter to str.
 
-<a id="sunweg.plant"></a>
-
-# sunweg.plant
-
-Sunweg API plant.
-
-<a id="sunweg.plant.Plant"></a>
-
-## Plant Objects
-
-```python
-class Plant()
-```
-
-Plant details.
-
-<a id="sunweg.plant.Plant.__init__"></a>
-
-#### \_\_init\_\_
-
-```python
-def __init__(id: int, name: str, total_power: float, kwh_per_kwp: float,
-             performance_rate: float, saving: float, today_energy: float,
-             today_energy_metric: str, total_energy: float,
-             total_carbon_saving: float, last_update: datetime) -> None
-```
-
-Initialize Plant.
-
-**Arguments**:
-
-- `id` (`int`): plant id
-- `name` (`str`): plant name
-- `total_power` (`float`): plant total power
-- `kwh_per_kwp` (`float`): plant kWh/kWp
-- `performance_rate` (`float`): plant performance rate
-- `saving` (`float`): total saving in R$
-- `today_energy` (`float`): today generated energy
-- `today_energy_metric` (`str`): today generated energy metric
-- `total_energy` (`float`): total generated energy in kWh
-- `total_carbon_saving` (`float`): total of CO2 saved
-- `last_update` (`datetime`): when the data was updated
-
-<a id="sunweg.plant.Plant.id"></a>
-
-#### id
-
-```python
-@property
-def id() -> int
-```
-
-Get plant id.
-
-**Returns**:
-
-`int`: plant id
-
-<a id="sunweg.plant.Plant.name"></a>
-
-#### name
-
-```python
-@property
-def name() -> str
-```
-
-Get plant name.
-
-**Returns**:
-
-`str`: plant name
-
-<a id="sunweg.plant.Plant.total_power"></a>
-
-#### total\_power
-
-```python
-@property
-def total_power() -> float
-```
-
-Get plant total power.
-
-**Returns**:
-
-`float`: plant total power
-
-<a id="sunweg.plant.Plant.kwh_per_kwp"></a>
-
-#### kwh\_per\_kwp
-
-```python
-@property
-def kwh_per_kwp() -> float
-```
-
-Get plant kWh/kWp.
-
-**Returns**:
-
-`float`: plant kWh/kWp
-
-<a id="sunweg.plant.Plant.performance_rate"></a>
-
-#### performance\_rate
-
-```python
-@property
-def performance_rate() -> float
-```
-
-Get plant performance rate.
-
-**Returns**:
-
-`float`: plant performance rate
-
-<a id="sunweg.plant.Plant.saving"></a>
-
-#### saving
-
-```python
-@property
-def saving() -> float
-```
-
-Get plant saving in R$.
-
-**Returns**:
-
-`float`: plant saving in R$
-
-<a id="sunweg.plant.Plant.today_energy"></a>
-
-#### today\_energy
-
-```python
-@property
-def today_energy() -> float
-```
-
-Get plant today generated energy.
-
-**Returns**:
-
-`float`: plant today generated energy
-
-<a id="sunweg.plant.Plant.today_energy_metric"></a>
-
-#### today\_energy\_metric
-
-```python
-@property
-def today_energy_metric() -> str
-```
-
-Get plant today generated energy metric.
-
-**Returns**:
-
-`str`: plant today generated energy metric
-
-<a id="sunweg.plant.Plant.total_energy"></a>
-
-#### total\_energy
-
-```python
-@property
-def total_energy() -> float
-```
-
-Get plant total generated energy in kWh.
-
-**Returns**:
-
-`float`: plant total generated energy in kWh
-
-<a id="sunweg.plant.Plant.total_carbon_saving"></a>
-
-#### total\_carbon\_saving
-
-```python
-@property
-def total_carbon_saving() -> float
-```
-
-Get plant total of CO2 saved.
-
-**Returns**:
-
-`float`: plant total of CO2 saved
-
-<a id="sunweg.plant.Plant.last_update"></a>
-
-#### last\_update
-
-```python
-@property
-def last_update() -> datetime
-```
-
-Get when the plant data was updated.
-
-**Returns**:
-
-`datetime`: when the plant data was updated
-
-<a id="sunweg.plant.Plant.inverters"></a>
-
-#### inverters
-
-```python
-@property
-def inverters() -> list[Inverter]
-```
-
-Get list of plant's inverters.
-
-**Returns**:
-
-`list[Inverter]`: list of inverters
-
-<a id="sunweg.plant.Plant.__str__"></a>
-
-#### \_\_str\_\_
-
-```python
-def __str__() -> str
-```
-
-Cast Plant to str.
-
 <a id="sunweg.const"></a>
 
 # sunweg.const
@@ -1075,91 +842,6 @@ SunWEG API inverter details path
 #### SUNWEG\_MONTH\_STATS\_PATH
 
 SunWEG API month history path
-
-<a id="sunweg.util"></a>
-
-# sunweg.util
-
-Sunweg API util.
-
-<a id="sunweg.util.Status"></a>
-
-## Status Objects
-
-```python
-class Status(Enum)
-```
-
-Status enum.
-
-<a id="sunweg.util.ProductionStats"></a>
-
-## ProductionStats Objects
-
-```python
-class ProductionStats()
-```
-
-Energy production statistics
-
-<a id="sunweg.util.ProductionStats.__init__"></a>
-
-#### \_\_init\_\_
-
-```python
-def __init__(date: date, production: float, prognostic: float) -> None
-```
-
-Initialize energy production statistics.
-
-**Arguments**:
-
-- `date` (`date`): statistics date
-- `production` (`float`): statistics production in kWh
-- `prognostic`: statistics expected production in kWh
-
-<a id="sunweg.util.ProductionStats.date"></a>
-
-#### date
-
-```python
-@property
-def date() -> date
-```
-
-Get date.
-
-<a id="sunweg.util.ProductionStats.production"></a>
-
-#### production
-
-```python
-@property
-def production() -> float
-```
-
-Get energy production in kWh.
-
-<a id="sunweg.util.ProductionStats.prognostic"></a>
-
-#### prognostic
-
-```python
-@property
-def prognostic() -> float
-```
-
-Get expected energy production in kWh.
-
-<a id="sunweg.util.ProductionStats.__str__"></a>
-
-#### \_\_str\_\_
-
-```python
-def __str__() -> str
-```
-
-Cast Phase to str.
 
 <a id="sunweg.api"></a>
 
@@ -1388,4 +1070,322 @@ Retrieve month energy production statistics.
 **Returns**:
 
 `list[ProductionStats]`: list of daily energy production statistics
+
+<a id="sunweg.plant"></a>
+
+# sunweg.plant
+
+Sunweg API plant.
+
+<a id="sunweg.plant.Plant"></a>
+
+## Plant Objects
+
+```python
+class Plant()
+```
+
+Plant details.
+
+<a id="sunweg.plant.Plant.__init__"></a>
+
+#### \_\_init\_\_
+
+```python
+def __init__(id: int, name: str, total_power: float, kwh_per_kwp: float,
+             performance_rate: float, saving: float, today_energy: float,
+             today_energy_metric: str, total_energy: float,
+             total_carbon_saving: float, last_update: datetime | None) -> None
+```
+
+Initialize Plant.
+
+**Arguments**:
+
+- `id` (`int`): plant id
+- `name` (`str`): plant name
+- `total_power` (`float`): plant total power
+- `kwh_per_kwp` (`float`): plant kWh/kWp
+- `performance_rate` (`float`): plant performance rate
+- `saving` (`float`): total saving in R$
+- `today_energy` (`float`): today generated energy
+- `today_energy_metric` (`str`): today generated energy metric
+- `total_energy` (`float`): total generated energy in kWh
+- `total_carbon_saving` (`float`): total of CO2 saved
+- `last_update` (`datetime | None`): when the data was updated
+
+<a id="sunweg.plant.Plant.id"></a>
+
+#### id
+
+```python
+@property
+def id() -> int
+```
+
+Get plant id.
+
+**Returns**:
+
+`int`: plant id
+
+<a id="sunweg.plant.Plant.name"></a>
+
+#### name
+
+```python
+@property
+def name() -> str
+```
+
+Get plant name.
+
+**Returns**:
+
+`str`: plant name
+
+<a id="sunweg.plant.Plant.total_power"></a>
+
+#### total\_power
+
+```python
+@property
+def total_power() -> float
+```
+
+Get plant total power.
+
+**Returns**:
+
+`float`: plant total power
+
+<a id="sunweg.plant.Plant.kwh_per_kwp"></a>
+
+#### kwh\_per\_kwp
+
+```python
+@property
+def kwh_per_kwp() -> float
+```
+
+Get plant kWh/kWp.
+
+**Returns**:
+
+`float`: plant kWh/kWp
+
+<a id="sunweg.plant.Plant.performance_rate"></a>
+
+#### performance\_rate
+
+```python
+@property
+def performance_rate() -> float
+```
+
+Get plant performance rate.
+
+**Returns**:
+
+`float`: plant performance rate
+
+<a id="sunweg.plant.Plant.saving"></a>
+
+#### saving
+
+```python
+@property
+def saving() -> float
+```
+
+Get plant saving in R$.
+
+**Returns**:
+
+`float`: plant saving in R$
+
+<a id="sunweg.plant.Plant.today_energy"></a>
+
+#### today\_energy
+
+```python
+@property
+def today_energy() -> float
+```
+
+Get plant today generated energy.
+
+**Returns**:
+
+`float`: plant today generated energy
+
+<a id="sunweg.plant.Plant.today_energy_metric"></a>
+
+#### today\_energy\_metric
+
+```python
+@property
+def today_energy_metric() -> str
+```
+
+Get plant today generated energy metric.
+
+**Returns**:
+
+`str`: plant today generated energy metric
+
+<a id="sunweg.plant.Plant.total_energy"></a>
+
+#### total\_energy
+
+```python
+@property
+def total_energy() -> float
+```
+
+Get plant total generated energy in kWh.
+
+**Returns**:
+
+`float`: plant total generated energy in kWh
+
+<a id="sunweg.plant.Plant.total_carbon_saving"></a>
+
+#### total\_carbon\_saving
+
+```python
+@property
+def total_carbon_saving() -> float
+```
+
+Get plant total of CO2 saved.
+
+**Returns**:
+
+`float`: plant total of CO2 saved
+
+<a id="sunweg.plant.Plant.last_update"></a>
+
+#### last\_update
+
+```python
+@property
+def last_update() -> datetime | None
+```
+
+Get when the plant data was updated.
+
+**Returns**:
+
+`datetime | None`: when the plant data was updated
+
+<a id="sunweg.plant.Plant.inverters"></a>
+
+#### inverters
+
+```python
+@property
+def inverters() -> list[Inverter]
+```
+
+Get list of plant's inverters.
+
+**Returns**:
+
+`list[Inverter]`: list of inverters
+
+<a id="sunweg.plant.Plant.__str__"></a>
+
+#### \_\_str\_\_
+
+```python
+def __str__() -> str
+```
+
+Cast Plant to str.
+
+<a id="sunweg.util"></a>
+
+# sunweg.util
+
+Sunweg API util.
+
+<a id="sunweg.util.Status"></a>
+
+## Status Objects
+
+```python
+class Status(Enum)
+```
+
+Status enum.
+
+<a id="sunweg.util.ProductionStats"></a>
+
+## ProductionStats Objects
+
+```python
+class ProductionStats()
+```
+
+Energy production statistics
+
+<a id="sunweg.util.ProductionStats.__init__"></a>
+
+#### \_\_init\_\_
+
+```python
+def __init__(date: date, production: float, prognostic: float) -> None
+```
+
+Initialize energy production statistics.
+
+**Arguments**:
+
+- `date` (`date`): statistics date
+- `production` (`float`): statistics production in kWh
+- `prognostic`: statistics expected production in kWh
+
+<a id="sunweg.util.ProductionStats.date"></a>
+
+#### date
+
+```python
+@property
+def date() -> date
+```
+
+Get date.
+
+<a id="sunweg.util.ProductionStats.production"></a>
+
+#### production
+
+```python
+@property
+def production() -> float
+```
+
+Get energy production in kWh.
+
+<a id="sunweg.util.ProductionStats.prognostic"></a>
+
+#### prognostic
+
+```python
+@property
+def prognostic() -> float
+```
+
+Get expected energy production in kWh.
+
+<a id="sunweg.util.ProductionStats.__str__"></a>
+
+#### \_\_str\_\_
+
+```python
+def __str__() -> str
+```
+
+Cast Phase to str.
 
