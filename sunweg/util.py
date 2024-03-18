@@ -1,4 +1,5 @@
 """Sunweg API util."""
+
 from datetime import date
 from enum import Enum
 
@@ -10,12 +11,14 @@ class Status(Enum):
     WARN = 2
     ERROR = 1
 
+
 class ProductionStats:
     """Energy production statistics"""
-    def __init__(self, date:date, production:float, prognostic:float) -> None:
+
+    def __init__(self, date: date, production: float, prognostic: float) -> None:
         """
         Initialize energy production statistics.
-        
+
         :param date: statistics date
         :type date: date
         :param production: statistics production in kWh
@@ -35,12 +38,12 @@ class ProductionStats:
     def production(self) -> float:
         """Get energy production in kWh."""
         return self._production
-    
+
     @property
     def prognostic(self) -> float:
         """Get expected energy production in kWh."""
         return self._prognostic
-    
+
     def __str__(self) -> str:
         """Cast Phase to str."""
         return str(self.__class__) + ": " + str(self.__dict__)

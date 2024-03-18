@@ -1,4 +1,5 @@
 """API Helper."""
+
 import json
 from datetime import datetime
 from typing import Any
@@ -190,7 +191,9 @@ class APIHelper:
                 total_carbon_saving=result["reduz_carbono_total_number"],
                 last_update=datetime.strptime(
                     result["ultimaAtualizacao"], "%Y-%m-%d %H:%M:%S"
-                ),
+                )
+                if result["ultimaAtualizacao"] is not None
+                else None,
             )
 
             plant.inverters.extend(
