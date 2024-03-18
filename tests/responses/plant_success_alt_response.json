@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "usinas": {
+    "id": 16925,
+    "nome": "Plant Name",
+    "inversores": [
+      {
+        "id": 21255,
+        "nome": "Inverter Name",
+        "descricao": "Inverter Description",
+        "esn": "1234ABC",
+        "situacao": 1,
+        "tensaoca": 242,
+        "temperatura": 80
+      }
+    ]
+  },
+  "ultimaAtualizacao": null,
+  "AcumuladoPotencia": "25,23 kW",
+  "energiaGeradaHoje": "1,23 kWh",
+  "energiaacumuladanumber": "23.20",
+  "taxaPerformance": 1.48,
+  "KWHporkWp": "1,2",
+  "PerformanceRate": 0.1,
+  "reduz_carbono_total_number": 0.012296,
+  "economia": 12.786912
+}

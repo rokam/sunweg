@@ -1,4 +1,5 @@
 """Test sunweg.api."""
+
 from datetime import date, datetime
 from os import path
 import os
@@ -166,6 +167,44 @@ class Api_Test(TestCase):
             assert plant.name == "Plant Name"
             assert plant.total_power == 25.23
             assert plant.last_update == datetime(2023, 2, 25, 8, 4, 22)
+            assert plant.kwh_per_kwp == 1.2
+            assert plant.performance_rate == 1.48
+            assert plant.saving == 12.786912
+            assert plant.today_energy == 1.23
+            assert plant.today_energy_metric == "kWh"
+            assert plant.total_carbon_saving == 0.012296
+            assert plant.total_energy == 23.2
+            assert plant.__str__().startswith("<class 'sunweg.plant.Plant'>")
+            assert len(plant.inverters) == 1
+            for inverter in plant.inverters:
+                assert inverter.id == 21255
+                assert inverter.name == "Inverter Name"
+                assert inverter.frequency == 0
+                assert inverter.power == 0.0
+                assert inverter.power_metric == ""
+                assert inverter.power_factor == 0.0
+                assert inverter.sn == "1234ABC"
+                assert inverter.status == Status.ERROR
+                assert inverter.temperature == 80
+                assert inverter.today_energy == 0.0
+                assert inverter.today_energy_metric == ""
+                assert inverter.total_energy == 0.0
+                assert inverter.total_energy_metric == ""
+                assert not inverter.is_complete
+
+    def test_plant_success_alt(self) -> None:
+        """Test plant success."""
+        with patch(
+            "requests.Session.get",
+            return_value=self.responses["plant_success_alt_response.json"],
+        ), patch("sunweg.api.APIHelper.inverter", return_value=INVERTER_MOCK):
+            api = APIHelper("user@acme.com", "password")
+            plant = api.plant(16925)
+            assert plant is not None
+            assert plant.id == 16925
+            assert plant.name == "Plant Name"
+            assert plant.total_power == 25.23
+            assert plant.last_update is None
             assert plant.kwh_per_kwp == 1.2
             assert plant.performance_rate == 1.48
             assert plant.saving == 12.786912

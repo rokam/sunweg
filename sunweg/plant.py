@@ -1,4 +1,5 @@
 """Sunweg API plant."""
+
 from datetime import datetime
 
 from .device import Inverter
@@ -19,7 +20,7 @@ class Plant:
         today_energy_metric: str,
         total_energy: float,
         total_carbon_saving: float,
-        last_update: datetime,
+        last_update: datetime | None,
     ) -> None:
         """
         Initialize Plant.
@@ -45,7 +46,7 @@ class Plant:
         :param total_carbon_saving: total of CO2 saved
         :type total_carbon_saving: float
         :param last_update: when the data was updated
-        :type last_update: datetime
+        :type last_update: datetime | None
         """
         self._id = id
         self._name = name
@@ -161,12 +162,12 @@ class Plant:
         return self._total_carbon_saving
 
     @property
-    def last_update(self) -> datetime:
+    def last_update(self) -> datetime | None:
         """
         Get when the plant data was updated.
 
         :return: when the plant data was updated
-        :rtype: datetime
+        :rtype: datetime | None
         """
         return self._last_update
 
