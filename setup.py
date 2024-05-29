@@ -7,13 +7,13 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 requires = [
-    "dateutil",
+    "python-dateutil",
     "requests",
 ]
 
 setuptools.setup(
     name="sunweg",
-    version="2.1.1",
+    version="3.0.0",
     author="rokam",
     author_email="lucas@mindello.com.br",
     description="A library to retrieve data from sunweg.net",
