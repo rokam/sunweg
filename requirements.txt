@@ -1,2 +1,2 @@
-py-dateutil
+python-dateutil
 requests
