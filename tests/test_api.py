@@ -169,7 +169,7 @@ class Api_Test(TestCase):
             assert plant.last_update == datetime(2023, 2, 25, 8, 4, 22)
             assert plant.kwh_per_kwp == 0.0
             assert plant.performance_rate == 0.0
-            assert plant.saving == 12.786912
+            assert plant.saving == 12.78
             assert plant.today_energy == 1.23
             assert plant.today_energy_metric == "kWh"
             assert plant.total_carbon_saving == 0.012296
@@ -207,7 +207,7 @@ class Api_Test(TestCase):
             assert plant.last_update is None
             assert plant.kwh_per_kwp == 0.0
             assert plant.performance_rate == 0.0
-            assert plant.saving == 12.786912
+            assert plant.saving == 12.78
             assert plant.today_energy == 1.23
             assert plant.today_energy_metric == "kWh"
             assert plant.total_carbon_saving == 0.012296

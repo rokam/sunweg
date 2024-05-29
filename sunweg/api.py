@@ -48,7 +48,7 @@ def convert_situation_status(situation: int) -> Status:
 
 
 def separate_value_metric(
-    value_with_metric: str | None, default_metric: str = ""
+    value_with_metric: str | None, default_metric: str = "", metric_before: bool = False
 ) -> tuple[float, str]:
     """
     Separate the value from the metric.
@@ -57,12 +57,21 @@ def separate_value_metric(
     :type value_with_metric: str | None
     :param default_metric: metric that should be returned if `value_with_metric` is None
     :type default_metric: str
+    :param metric_before: true when metric appears before the value
+    :type metric_before: bool
     :return: tuple with value and metric
     :rtype: tuple[float, str]
     """
     if value_with_metric is None or len(value_with_metric) == 0:
         return (0.0, default_metric)
     split = value_with_metric.split(" ")
+    if metric_before:
+        return (
+            float(split[0].replace(",", "."))
+            if len(split) < 2
+            else float(split[1].replace(",", ".")),
+            default_metric if len(split) < 2 else split[0],
+        )
     return (
         float(split[0].replace(",", ".")),
         default_metric if len(split) < 2 else split[1],
@@ -148,7 +157,15 @@ class APIHelper:
         try:
             result = self._get(SUNWEG_PLANT_LIST_PATH)
             ret_list = []
-            for plant in result["conectadas"]:
+            plantlist = (
+                result["nao_comissionadas"]
+                + result["conectadas"]
+                + result["falhas"]
+                + result["alertas"]
+                + result["atendimento"]
+            )
+
+            for plant in plantlist:
                 if (plant := self.plant(plant["id"])) is not None:
                     ret_list.append(plant)
             return ret_list
@@ -176,13 +193,14 @@ class APIHelper:
                 result["energiadia"], "kWh"
             )
             total_power = separate_value_metric(result["AcumuladoPotencia"])[0]
+            saving = separate_value_metric(result["economia"], metric_before=True)[0]
             plant = Plant(
                 id=id,
                 name=result["usinas"]["nome"],
                 total_power=total_power,
                 kwh_per_kwp=float(0),
                 performance_rate=float(0),
-                saving=result["economia"],
+                saving=saving,
                 today_energy=today_energy,
                 today_energy_metric=today_energy_metric,
                 total_energy=float(result["energiaacumuladanumber"]),
