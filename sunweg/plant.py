@@ -1,6 +1,7 @@
 """Sunweg API plant."""
 
 from datetime import datetime
+import warnings
 
 from .device import Inverter
 
@@ -94,21 +95,33 @@ class Plant:
     @property
     def kwh_per_kwp(self) -> float:
         """
+        Deprecated as API v2 doesn't return it anymore.
         Get plant kWh/kWp.
 
         :return: plant kWh/kWp
         :rtype: float
         """
+        warnings.warn(
+            "The 'kwh_per_kwp' property is deprecated and will return 0.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
         return self._kwh_per_kwp
 
     @property
     def performance_rate(self) -> float:
         """
+        Deprecated as API v2 doesn't return it anymore.
         Get plant performance rate.
 
         :return: plant performance rate
         :rtype: float
         """
+        warnings.warn(
+            "The 'performance_rate' property is deprecated and will return 0.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
         return self._performance_rate
 
     @property

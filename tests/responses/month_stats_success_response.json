@@ -1,367 +1,317 @@
 {
-  "success": true,
-  "graficomes": [
-      {
-          "tempoatual": "2023-12-01",
-          "energiapordia": "86.70",
-          "prognostico": "98.774193548387",
-          "maior_energia": "86.70",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-02",
-          "energiapordia": "121.30",
-          "prognostico": "98.774193548387",
-          "maior_energia": "121.30",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-03",
-          "energiapordia": "102.10",
-          "prognostico": "98.774193548387",
-          "maior_energia": "102.10",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-04",
-          "energiapordia": "78.50",
-          "prognostico": "98.774193548387",
-          "maior_energia": "78.50",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-05",
-          "energiapordia": "27.60",
-          "prognostico": "98.774193548387",
-          "maior_energia": "27.60",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-06",
-          "energiapordia": "166.60",
-          "prognostico": "98.774193548387",
-          "maior_energia": "166.60",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-07",
-          "energiapordia": "189.50",
-          "prognostico": "98.774193548387",
-          "maior_energia": "189.50",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-08",
-          "energiapordia": "183.80",
-          "prognostico": "98.774193548387",
-          "maior_energia": "183.80",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-09",
-          "energiapordia": "181.20",
-          "prognostico": "98.774193548387",
-          "maior_energia": "181.20",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-10",
-          "energiapordia": "179.60",
-          "prognostico": "98.774193548387",
-          "maior_energia": "179.60",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-11",
-          "energiapordia": 0,
-          "prognostico": "98.774193548387"
-      },
-      {
-          "tempoatual": "2023-12-12",
-          "energiapordia": 0,
-          "prognostico": "98.774193548387"
-      },
-      {
-          "tempoatual": "2023-12-13",
-          "energiapordia": "188.20",
-          "prognostico": "98.774193548387",
-          "maior_energia": "188.20",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-14",
-          "energiapordia": "184.40",
-          "prognostico": "98.774193548387",
-          "maior_energia": "184.40",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-15",
-          "energiapordia": "193.30",
-          "prognostico": "98.774193548387",
-          "maior_energia": "193.30",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-16",
-          "energiapordia": "149.90",
-          "prognostico": "98.774193548387",
-          "maior_energia": "149.90",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-17",
-          "energiapordia": "154.00",
-          "prognostico": "98.774193548387",
-          "maior_energia": "154.00",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-18",
-          "energiapordia": "86.40",
-          "prognostico": "98.774193548387",
-          "maior_energia": "86.40",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-19",
-          "energiapordia": "144.90",
-          "prognostico": "98.774193548387",
-          "maior_energia": "144.90",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-20",
-          "energiapordia": "126.80",
-          "prognostico": "98.774193548387",
-          "maior_energia": "126.80",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-21",
-          "energiapordia": "85.40",
-          "prognostico": "98.774193548387",
-          "maior_energia": "85.40",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-22",
-          "energiapordia": "110.90",
-          "prognostico": "98.774193548387",
-          "maior_energia": "110.90",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-23",
-          "energiapordia": "107.20",
-          "prognostico": "98.774193548387",
-          "maior_energia": "107.20",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-24",
-          "energiapordia": "127.00",
-          "prognostico": "98.774193548387",
-          "maior_energia": "127.00",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-25",
-          "energiapordia": "119.60",
-          "prognostico": "98.774193548387",
-          "maior_energia": "119.60",
-          "tipo": "N"
-      },
-      {
-          "tempoatual": "2023-12-26",
-          "energiapordia": 28.300000000000000710542735760100185871124267578125,
-          "prognostico": "98.774193548387"
-      },
-      {
-          "tempoatual": "2023-12-27",
-          "energiapordia": 0,
-          "prognostico": "98.774193548387"
-      },
-      {
-          "tempoatual": "2023-12-28",
-          "energiapordia": 0,
-          "prognostico": "98.774193548387"
-      },
-      {
-          "tempoatual": "2023-12-29",
-          "energiapordia": 0,
-          "prognostico": "98.774193548387"
-      },
-      {
-          "tempoatual": "2023-12-30",
-          "energiapordia": 0,
-          "prognostico": "98.774193548387"
-      },
-      {
-          "tempoatual": "2023-12-31",
-          "energiapordia": 0,
-          "prognostico": "98.774193548387"
-      }
-  ],
-  "graficomescalc": [
-      {
-          "tempoatual": "2023-12-01",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-02",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-03",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-04",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-05",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-06",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-07",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-08",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-09",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-10",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-11",
-          "energiapordia": "287.80",
-          "prognostico": "98.774193548387",
-          "maior_energia": "287.80",
-          "tipo": "C"
-      },
-      {
-          "tempoatual": "2023-12-12",
-          "energiapordia": "287.80",
-          "prognostico": "98.774193548387",
-          "maior_energia": "287.80",
-          "tipo": "C"
-      },
-      {
-          "tempoatual": "2023-12-13",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-14",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-15",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-16",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-17",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-18",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-19",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-20",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-21",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-22",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-23",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-24",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-25",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-26",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-27",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-28",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-29",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-30",
-          "energiapordia": 0,
-          "prognostico": 0
-      },
-      {
-          "tempoatual": "2023-12-31",
-          "energiapordia": 0,
-          "prognostico": 0
-      }
-  ]
+    "graficomes": [
+        {
+            "energiapordia": 116.9,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Wed, 01 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 113.7,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Thu, 02 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 112.4,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Fri, 03 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 133.3,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Sat, 04 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 129.2,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Sun, 05 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 86.5,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Mon, 06 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 116.2,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Tue, 07 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 125.8,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Wed, 08 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 127.5,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Thu, 09 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 118.7,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Fri, 10 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 122.6,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Sat, 11 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 123.3,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Sun, 12 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 96.3,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Mon, 13 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 104.3,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Tue, 14 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 120.9,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Wed, 15 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 120.8,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Thu, 16 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 115.1,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Fri, 17 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 118.8,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Sat, 18 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 114.5,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Sun, 19 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 102.4,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Mon, 20 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 106.9,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Tue, 21 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 117.1,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Wed, 22 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 105.6,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Thu, 23 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 99.1,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Fri, 24 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 104.4,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Sat, 25 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 96.7,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Sun, 26 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 110.4,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Mon, 27 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 108.6,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "Tue, 28 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 58.3,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "2024-05-29"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "2024-05-30"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": "111.0322580645161290322580645",
+            "tempoatual": "2024-05-31"
+        }
+    ],
+    "graficomescalc": [
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Wed, 01 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Thu, 02 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Fri, 03 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Sat, 04 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Sun, 05 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Mon, 06 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Tue, 07 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Wed, 08 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Thu, 09 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Fri, 10 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Sat, 11 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Sun, 12 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Mon, 13 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Tue, 14 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Wed, 15 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Thu, 16 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Fri, 17 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Sat, 18 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Sun, 19 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Mon, 20 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Tue, 21 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Wed, 22 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Thu, 23 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Fri, 24 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Sat, 25 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Sun, 26 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Mon, 27 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "Tue, 28 May 2024 00:00:00 GMT"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "2024-05-29"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "2024-05-30"
+        },
+        {
+            "energiapordia": 0,
+            "prognostico": 0,
+            "tempoatual": "2024-05-31"
+        }
+    ],
+    "success": true
 }

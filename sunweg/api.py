@@ -1,7 +1,7 @@
 """API Helper."""
 
 import json
-from datetime import datetime
+from dateutil import parser
 from typing import Any
 
 from requests import Response, session
@@ -118,7 +118,7 @@ class APIHelper:
         :rtype: bool
         """
         user_data = json.dumps(
-            {"usuario": self._username, "senha": self._password},
+            {"usuario": self._username, "senha": self._password, "rememberMe": True},
             default=lambda o: o.__dict__,
         )
 
@@ -131,8 +131,8 @@ class APIHelper:
     def _headers(self):
         """Retrieve headers with authentication token."""
         if self._token is None:
-            return {}
-        return {"X-Auth-Token-Update": self._token}
+            return {"Content-Type": "application/json"}
+        return {"Content-Type": "application/json", "X-Auth-Token-Update": self._token}
 
     def listPlants(self, retry=True) -> list[Plant]:
         """
@@ -148,7 +148,7 @@ class APIHelper:
         try:
             result = self._get(SUNWEG_PLANT_LIST_PATH)
             ret_list = []
-            for plant in result["usinas"]:
+            for plant in result["conectadas"]:
                 if (plant := self.plant(plant["id"])) is not None:
                     ret_list.append(plant)
             return ret_list
@@ -173,25 +173,21 @@ class APIHelper:
             result = self._get(SUNWEG_PLANT_DETAIL_PATH + str(id))
 
             (today_energy, today_energy_metric) = separate_value_metric(
-                result["energiaGeradaHoje"], "kWh"
+                result["energiadia"], "kWh"
             )
             total_power = separate_value_metric(result["AcumuladoPotencia"])[0]
             plant = Plant(
                 id=id,
                 name=result["usinas"]["nome"],
                 total_power=total_power,
-                kwh_per_kwp=float(str(result["KWHporkWp"]).replace(",", "."))
-                if result["KWHporkWp"] != ""
-                else float(0),
-                performance_rate=result["taxaPerformance"],
+                kwh_per_kwp=float(0),
+                performance_rate=float(0),
                 saving=result["economia"],
                 today_energy=today_energy,
                 today_energy_metric=today_energy_metric,
                 total_energy=float(result["energiaacumuladanumber"]),
                 total_carbon_saving=result["reduz_carbono_total_number"],
-                last_update=datetime.strptime(
-                    result["ultimaAtualizacao"], "%Y-%m-%d %H:%M:%S"
-                )
+                last_update=parser.parse(result["ultimaAtualizacao"])
                 if result["ultimaAtualizacao"] is not None
                 else None,
             )
@@ -351,7 +347,7 @@ class APIHelper:
             )
             return [
                 ProductionStats(
-                    datetime.strptime(item["tempoatual"], "%Y-%m-%d").date(),
+                    parser.parse(item["tempoatual"]).date(),
                     float(item["energiapordia"]),
                     float(item["prognostico"]),
                 )

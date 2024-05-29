@@ -167,8 +167,8 @@ class Api_Test(TestCase):
             assert plant.name == "Plant Name"
             assert plant.total_power == 25.23
             assert plant.last_update == datetime(2023, 2, 25, 8, 4, 22)
-            assert plant.kwh_per_kwp == 1.2
-            assert plant.performance_rate == 1.48
+            assert plant.kwh_per_kwp == 0.0
+            assert plant.performance_rate == 0.0
             assert plant.saving == 12.786912
             assert plant.today_energy == 1.23
             assert plant.today_energy_metric == "kWh"
@@ -205,8 +205,8 @@ class Api_Test(TestCase):
             assert plant.name == "Plant Name"
             assert plant.total_power == 25.23
             assert plant.last_update is None
-            assert plant.kwh_per_kwp == 1.2
-            assert plant.performance_rate == 1.48
+            assert plant.kwh_per_kwp == 0.0
+            assert plant.performance_rate == 0.0
             assert plant.saving == 12.786912
             assert plant.today_energy == 1.23
             assert plant.today_energy_metric == "kWh"
@@ -418,9 +418,9 @@ class Api_Test(TestCase):
             assert len(stats) > 0
             i: int = 1
             for stat in stats:
-                assert stat.date == date(2023, 12, i)
+                assert stat.date == date(2024, 5, i)
                 assert isinstance(stat.production, float)
-                assert stat.prognostic == 98.774193548387
+                assert stat.prognostic == 111.03225806451613
                 assert stat.__str__().startswith(
                     "<class 'sunweg.util.ProductionStats'>"
                 )
