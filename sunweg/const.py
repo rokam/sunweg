@@ -1,6 +1,6 @@
 """Sunweg API constants."""
 
-SUNWEG_URL = "https://api.sun.weg.net/v2/"
+SUNWEG_URL = "https://api.sunweg.net/v2/"
 """SunWEG API URL"""
 SUNWEG_LOGIN_PATH = "login/autenticacao"
 """SunWEG API login path"""
