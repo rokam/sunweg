@@ -83,19 +83,35 @@ class APIHelper:
 
     SERVER_URI = SUNWEG_URL
 
-    def __init__(self, username: str, password: str) -> None:
+    def __init__(
+        self,
+        username: str | None = None,
+        password: str | None = None,
+        token: str | None = None,
+    ) -> None:
         """
         Initialize APIHelper for SunWEG platform.
 
         :param username: username for authentication
         :param password: password for authentication
+        :param token: token for authentication
         :type username: str
         :type password: str
+        :type token: str
         """
-        self._token = None
+        self._token = token
         self._username = username
         self._password = password
         self.session = session()
+
+    def set_token(self, token: str) -> None:
+        """
+        Set token.
+
+        :param token: token for authentication
+        :type token: str
+        """
+        self._token = token
 
     def _set_username(self, username: str) -> None:
         """
@@ -126,6 +142,9 @@ class APIHelper:
         :return: True on authentication success
         :rtype: bool
         """
+        if self._username is None or self._password is None:
+            return False
+
         user_data = json.dumps(
             {"usuario": self._username, "senha": self._password, "rememberMe": True},
             default=lambda o: o.__dict__,

@@ -97,6 +97,17 @@ class Api_Test(TestCase):
                 api.authenticate()
             assert e_info.value.__str__() == "Request failed: <Response [500]>"
 
+    def test_initialize_token(self) -> None:
+        """Test initialize token."""
+        api = APIHelper(token="token")
+        assert api._token == "token"
+
+    def test_set_token(self) -> None:
+        """Test set token."""
+        api = APIHelper(token="token")
+        api.set_token("new_token")
+        assert api._token == "new_token"
+
     def test_authenticate_success(self) -> None:
         """Test authentication success."""
         with patch(
@@ -105,6 +116,11 @@ class Api_Test(TestCase):
         ):
             api = APIHelper("user@acme.com", "password")
             assert api.authenticate()
+
+    def test_authenticate_fail_empty_credentials(self) -> None:
+        """Test authentication failed."""
+        api = APIHelper(None, None)
+        assert not api.authenticate()
 
     def test_authenticate_failed(self) -> None:
         """Test authentication failed."""
