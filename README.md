@@ -9,10 +9,20 @@ Python lib for WEG solar energy platform, [SunWEG.net](https://sunweg.net/)
 
 ## Usage
 
+### Retrieve token
+You need to use devtools from your browser to retrieve the token. In most of them, you can open devtools by pressing F12.
+Inside the network tab, you need to check the preserve logs and then do a login.
+
+You can find the token in the request header of various XHR requests, for example:
+![Devtools with a request with a token](img/image.png)
+
+It will be available in the X-Auth-Token-Update header.
+
+### Code sample
 ``` python
 from sunweg.api import APIHelper
 
-api = APIHelper('username','password')
+api = APIHelper(token='your token here')
 plants = api.listPlants()
 for plant in plants:
     print(plant)
